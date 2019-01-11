@@ -1,9 +1,33 @@
 # Compiling Velvet
 
-sdaljasd
-adsfasd
+[Return to the main index](../README.html)
 
-adsf
+The following text describes how to compile the [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/) assember for your own computer.  That is, how you turn the human readable source code into a program file that your computer can run.
 
-asdf
+These instructions assume that you have set up a working UNIX system.
+
+> Ubuntu: The commands below should work 'out of the box'
+> macOS: You may need to install [Xcode](https://developer.apple.com/xcode/), which is free from the App Store.
+> Windows: You may need to install interpreter software like [Cygwin](http://www.cygwin.com).
+
+To compile Velvet:
+
+1. Download the Velvet source files, [*velvet_1.2.10.tgz*](../code/velvet_1.2.10.tgz)
+
+2. Decompress the file:
+```
+tar -xvzf velvet_1.2.10.tgz
+```
+
+3. Move into the directory *velvet_1.2.10*:
+```
+cd velvet_1.2.10
+```
+
+4. Compile the program:
+```
+make 'MAXKMERLENGTH=256'
+```
+
+Once these commands complete, you should have two program files called ```velvetg``` and ```velveth``` in the directory, which should run natively on your computer.  You can move these files wherever you need to.
 
