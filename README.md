@@ -1,12 +1,10 @@
-# Next Generation Sequencing: *De Novo* Assembly
+# *De Novo* Assembly of Next Gen Sequence Data
 
-**Genome Analysis 203.328 – Module 5**
-
-Prof Murray Cox
-School of Fundamental Sciences
+[Prof Murray Cox](https://www.genomicus.com)<br>
+School of Fundamental Sciences<br>
 Office: Tower D, Level 5, Room 04
 
-> In this lab, you will gain experience in taking fragmentary next generation sequencing reads and joining them together to create complete genomic sequences.
+**In this lab, you will gain experience in taking fragmentary next generation sequencing reads and joining them together to create complete genomic sequences.**
 
 ## Background
 
@@ -39,6 +37,8 @@ Each sequence entry consists of four lines. The first line always starts with �
 
 Cock, P. J. A., C. J. Fields, N. Goto, M. L. Heuer and P. M. Rice. 2010. [The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants](https://doi.org/10.1093/nar/gkp1137). *Nucleic Acids Research* 38:1767--1771.
 
+XXX - paper header
+
 FASTQ files are typically large. A standard Illumina run produces up to eight lanes of data, each with >300 million different sequence reads. Files for each of these lanes would usually be at least 50 gigabytes in size – more than twice the size of the extended ‘Lord of the Rings’ DVD box set. File sizes are getting bigger all the time.
 
 Assembling datasets this large is a major undertaking. You will be working with much smaller datasets in this class. However, you will be using real sequence data from real research projects. The assemblies you perform below are identical to those performed in actual research environments. The only differences are the file sizes and the shorter time these assemblies take to run.
@@ -50,6 +50,8 @@ There are a lot of programs that perform *de novo* sequence assembly – joining
 Daniel Zerbino and Ewen Birney wrote Velvet at the European Bioinformatics Institute in Cambridge, and published a description of its algorithm in 2008:
 
 Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read assembly using de Bruijn graphs](https://doi.org/10.1101/gr.074492.107). *Genome Research* 18:821--829.
+
+XXX - paper header
 
 Like many scientific programs, Velvet is open source – which means you can read the code if you want to – and freely available [on the web](https://www.ebi.ac.uk/~zerbino/velvet/).
 
@@ -88,6 +90,8 @@ cd example_assembly
 ls
 ```
 
+XXX - screenshot
+
 Next, you need to choose a sequence dataset to assemble. To start off, let’s use the example dataset called [ME8432.fastq](example/ME8432.fastq). Move the example dataset into your new directory. 
 
 Now, you need to get the programs.  Although there are better ways to set them up, for now just copy-and-paste the programs ‘velveth’ and ‘velvetg’ into this directory.  You can download these programs [here](code).
@@ -109,6 +113,8 @@ ls
 ```
 
 You should see a number of files, including *Graph*, *LastGraph*, *Log*, *PreGraph*, *Roadmaps*, *Sequences*, *contigs.fa* and *stats.txt*.  Take a look at some of these files using the command ```cat``` or similar.
+
+XXX - screenshot showing files
 
 The main file, *stats.txt*, contains almost all the information we need about the assembly. You should mostly use this file for your analyses below. For the example dataset, it should look something like this:
 
@@ -140,7 +146,7 @@ At the [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) website, choose ‘nucl
 
 You should soon see a screen that looks something like this (formatting may vary depending on website updates):
 
-XXX
+XXX - screenshot
 
 The red lines (top) represent good blast hits. You are looking for the best match to a gene or mRNA sequence (as opposed to an entire genome, chromosome or clone), which in this case is to GenBank entry NM_001178457. This accession comes from Saccharomyces cerevisiae (Baker’s yeast), and matches the calmodulin gene, which codes for a calcium ion binding protein.
 
