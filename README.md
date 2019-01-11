@@ -201,9 +201,10 @@ This exercise will be examined on the basis of a 4-5 page research report. You s
   5. A brief description of this gene (e.g., using information on GenBank and by Googling). What does it do? How does it work?
   6. Three graphs showing the effects of k-mer value on assembly quality (k-mer value versus number of contigs, k-mer value versus average contig length, and k-mer value versus maximum contig length), from a k-mer of 3 to the size of your input reads
 
-* A copy of i) your pseudocode and ii) your script/program for automating the assembly process. 
-
-> Note: the real code will be tested to check that it works!
+* Copies of
+  1. Your pseudocode
+  2. Your script/program for automating the assembly process. 
+      > Note: the code will be run to check that it works!
 
 See the grading criteria on Stream for more details on what you need to focus on. In short, the report should be a full and professional document. Make sure the layout is clear and check your spelling! (You will lose marks if I can’t find the information I’m looking for.) 
 
