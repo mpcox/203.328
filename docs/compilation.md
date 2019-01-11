@@ -1,13 +1,13 @@
 # Compiling Velvet
 
-[Return to the main index](../README.html)
+[Return to the main index](../index.html)
 
 The following text describes how to compile the [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/) assember for your own computer.  That is, how you turn the human readable source code into a program file that your computer can run.
 
 These instructions assume that you have set up a working UNIX system.
 
-> Ubuntu: The commands below should work 'out of the box'
-> macOS: You may need to install [Xcode](https://developer.apple.com/xcode/), which is free from the App Store.
+> Ubuntu: The commands below should work 'out of the box'<br>
+> macOS: You may need to install [Xcode](https://developer.apple.com/xcode/), which is free from the App Store.<br>
 > Windows: You may need to install interpreter software like [Cygwin](http://www.cygwin.com).
 
 To compile Velvet:
