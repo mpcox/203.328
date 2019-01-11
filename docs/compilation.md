@@ -8,29 +8,26 @@ These instructions assume that you have set up a working UNIX system.
 
 > Ubuntu: The commands below should work 'out of the box'<br>
 > macOS: You may need to install [Xcode](https://developer.apple.com/xcode/), which is free from the App Store.<br>
-> Windows: You may need to install interpreter software like [Cygwin](http://www.cygwin.com).
+> Windows: You may need to install interpreter software like [Cygwin](http://www.cygwin.com), which is also free.
 
 To compile Velvet:
 
 1. Download the Velvet source files, [*velvet_1.2.10.tgz*](../code/velvet_1.2.10.tgz)
 
 2. Decompress the file:
-
 ```
 tar -xvzf velvet_1.2.10.tgz
 ```
 
-3. Move into the directory *velvet_1.2.10*:
-
+3. Move into the *velvet_1.2.10* directory:
 ```
 cd velvet_1.2.10
 ```
 
 4. Compile the program:
-
 ```
 make 'MAXKMERLENGTH=256'
 ```
 
-Once these commands complete, you should have two program files called ```velvetg``` and ```velveth``` in the directory, which should run natively on your computer.  You can move these files wherever you need to.
+Once these commands complete, you should have two program files called ```velvetg``` and ```velveth``` in your directory.  These will run natively on your computer and you can move them wherever you want to.
 
