@@ -1,4 +1,4 @@
-# *De Novo* Assembly of Next Gen Sequence Data
+# *De Novo* Assembly of Short Read Sequences
 
 [Prof Murray Cox](https://www.genomicus.com)<br>
 School of Fundamental Sciences
