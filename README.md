@@ -93,7 +93,7 @@ XXX - screenshot
 
 Next, you need to choose a sequence dataset to assemble. To start off, let’s use the example dataset called [ME8432.fastq](example/ME8432.fastq). Move the example dataset into your new directory. 
 
-Now, you need to get the programs.  Although there are better ways to set them up, for now just copy-and-paste the programs ‘velveth’ and ‘velvetg’ into this directory.  You can download these programs [here](code).  If you want to learn how to compile these programs for your own machine, [look here](compilation.html).
+Now, you need to get the programs.  Although there are better ways to set them up, for now just copy-and-paste the programs ‘velveth’ and ‘velvetg’ into this directory.  You can download these programs [here](code).  If you want to learn how to compile these programs for your own machine, [look here](docs/compilation.html).
 
 At this point, you are ready to perform an assembly with a chosen k-mer value. Let’s start with a k-mer of 21.
 
