@@ -21,6 +21,8 @@ Sequence assembly is tricky – it is mathematically complex and computationally
 
 You have already covered basic UNIX methods in module 1. If you are comfortable with the UNIX command line, go straight to the tasks for module 5 further down in this document. If you want a quick refresher, look at the resources here.
 
+---
+
 ## Next Generation Sequences
 
 Sequences from next generation technologies come in a lot of different flavors. We will be using sequences generated on the [Illumina platform](http://www.illumina.com/applications/sequencing.html), the dominant one in use today.
@@ -43,6 +45,8 @@ XXX - paper header
 FASTQ files are typically large. A standard Illumina run produces up to eight lanes of data, each with >300 million different sequence reads. Files for each of these lanes would usually be at least 50 gigabytes in size – more than twice the size of the extended ‘Lord of the Rings’ DVD box set. File sizes are getting bigger all the time.
 
 Assembling datasets this large is a major undertaking. You will be working with much smaller datasets in this class. However, you will be using real sequence data from real research projects. The assemblies you perform below are identical to those performed in actual research environments. The only differences are the file sizes and the shorter time these assemblies take to run.
+
+---
 
 ## Assembly software
 
@@ -78,6 +82,8 @@ Assembly:  GGCTAGAGGCTAGCTTCAATGGGCGAAAGACCCGAGAGAGCTGGCT
 In practice, assembly with Velvet is not carried out by checking whether two sequences actually overlap (a method used in so-called overlap assembly algorithms), but instead by using a branch of mathematics concerned with networks (de Bruijn assembly algorithms). We will cover this method in a lecture, and you can also find out more about this approach in these papers:
 
 Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read assembly using de Bruijn graphs](https://doi.org/10.1101/gr.074492.107). *Genome Research* 18:821--829.
+
+---
 
 ## Assembly Example
 
@@ -155,6 +161,8 @@ For some datasets, the top hits may be to entire genome sequences or other nucle
 
 For fun, try blasting a single read from the original test input file ([ME8432.fastq](example/ME8432.fastq)). Does this differ from blasting your larger assembled fragment? If so, how? (*Hint*: the result may depend on the length of your reads, which varies from dataset to dataset).
 
+---
+
 ## What Should I Do Now?
 
 Your first challenge is to choose a dataset from the [FASTQ files provided](datasets) and perform *de novo* assembly using Velvet. Don’t use the example dataset ME8432.fastq and don’t choose the same dataset as your neighbor!  
@@ -164,6 +172,8 @@ Can you figure out what organism this dataset came from and what gene was sequen
 Your second challenge is to explore how varying the k-mer value affects the quality of the sequence assembly. Do some k-mer values produce better assemblies, and if so, which ones? The general approach is to find the size of the largest assembled fragment under different values of the k-mer (I suggest running all values from 3 to the length of your reads, odd numbers only). Remember to specify a different k-mer value on the command line, and also change the output directory name (e.g., use something like ```ME8432_19``` if your dataset is ME8432 and your k-mer is 19).
 
 Your third challenge is a very much a ‘stretch’ assignment. When done by hand, you need to run the same commands over and over again, except for changing the k-mer value. Can you figure out a process (i.e., an algorithm) to automate this? Represent your logic as pseudocode (a human readable explanation of what the process is). Taking this further, can you write a real script/program to automate the process? It is fine to use any language and take any approach. Hint: As a place to start, Google ‘bash’ and ‘for loop’. If you get stuck, ask, but I expect to see some real traction before I give out any more hints!
+
+---
 
 ## Research Report
 
