@@ -11,7 +11,7 @@ School of Fundamental Sciences
 [Next Generation Sequences](#next-generation-sequences)
 [Assembly software](#assembly-software)
 [Assembly Example](#assembly-example)
-[What Should I Do Now?](#what-should-i-do-now?)
+[What Should I Do Now?](#what-should-i-do-now)
 [Research Report](#research-report)
 
 
