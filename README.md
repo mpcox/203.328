@@ -6,6 +6,8 @@ School of Fundamental Sciences
 **In this lab, you will gain experience in taking fragmentary next generation sequencing reads and joining them together to create complete genomic sequences.**
 
 
+## Sections
+
 [Background](#background)<br>
 [UNIX Basics](#unix-basics)<br>
 [Next Generation Sequences](#next-generation-sequences)<br>
@@ -50,7 +52,7 @@ Each sequence entry consists of four lines. The first line always starts with �
 
 Cock, P. J. A., C. J. Fields, N. Goto, M. L. Heuer and P. M. Rice. 2010. [The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants](https://doi.org/10.1093/nar/gkp1137). *Nucleic Acids Research* 38:1767--1771.
 
-<img src="graphics/Cock_etal.png" width="400"/>
+<img src="graphics/Cock_etal.png" width="800"/>
 
 FASTQ files are typically large. A standard Illumina run produces up to eight lanes of data, each with >300 million different sequence reads. Files for each of these lanes would usually be at least 50 gigabytes in size – more than twice the size of the extended ‘Lord of the Rings’ DVD box set. File sizes are getting bigger all the time.
 
@@ -66,7 +68,7 @@ Daniel Zerbino and Ewen Birney wrote Velvet at the European Bioinformatics Insti
 
 Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read assembly using de Bruijn graphs](https://doi.org/10.1101/gr.074492.107). *Genome Research* 18:821--829.
 
-<img src="graphics/Zerbino_etal.png" width="400"/>
+<img src="graphics/Zerbino_etal.png" width="800"/>
 
 Like many scientific programs, Velvet is open source – which means you can read the code if you want to – and freely available [on the web](https://www.ebi.ac.uk/~zerbino/velvet/).
 
@@ -136,7 +138,7 @@ XXX - screenshot showing files
 The main file, *stats.txt*, contains almost all the information we need about the assembly. You should mostly use this file for your analyses below. For the example dataset, it should look something like this:
 
 ```
-ID    lgth    out    in    …
+ID   lgth   out  in   …
 1    329    0    0    …
 ```
 
