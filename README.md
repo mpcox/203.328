@@ -13,6 +13,8 @@ As sequencing costs have dropped, a large number of organisms have been sequence
 
 In this module, you will learn how to assemble a dataset of short next generation sequences. Your goal is to determine which gene and organism a set of sequences come from.
 
+---
+
 ## UNIX Basics
 
 Sequence assembly is tricky – it is mathematically complex and computationally expensive. Therefore, assembly is typically performed on large UNIX clusters using command line programs. This is the sort of environment we will be using today. 
