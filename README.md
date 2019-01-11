@@ -6,12 +6,12 @@ School of Fundamental Sciences
 **In this lab, you will gain experience in taking fragmentary next generation sequencing reads and joining them together to create complete genomic sequences.**
 
 
-[Background](#background)
-[UNIX Basics](#unix-basics)
-[Next Generation Sequences](#next-generation-sequences)
-[Assembly software](#assembly-software)
-[Assembly Example](#assembly-example)
-[What Should I Do Now?](#what-should-i-do-now)
+[Background](#background)<br>
+[UNIX Basics](#unix-basics)<br>
+[Next Generation Sequences](#next-generation-sequences)<br>
+[Assembly software](#assembly-software)<br>
+[Assembly Example](#assembly-example)<br>
+[What Should I Do Now?](#what-should-i-do-now)<br>
 [Research Report](#research-report)
 
 
@@ -50,7 +50,7 @@ Each sequence entry consists of four lines. The first line always starts with �
 
 Cock, P. J. A., C. J. Fields, N. Goto, M. L. Heuer and P. M. Rice. 2010. [The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants](https://doi.org/10.1093/nar/gkp1137). *Nucleic Acids Research* 38:1767--1771.
 
-![Title page of Cock et al. 2010][graphics/Cock_etal.png]
+<img src="graphics/Cock_etal.png" width="400"/>
 
 FASTQ files are typically large. A standard Illumina run produces up to eight lanes of data, each with >300 million different sequence reads. Files for each of these lanes would usually be at least 50 gigabytes in size – more than twice the size of the extended ‘Lord of the Rings’ DVD box set. File sizes are getting bigger all the time.
 
@@ -66,7 +66,7 @@ Daniel Zerbino and Ewen Birney wrote Velvet at the European Bioinformatics Insti
 
 Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read assembly using de Bruijn graphs](https://doi.org/10.1101/gr.074492.107). *Genome Research* 18:821--829.
 
-![Title page of Zerbino et al. 2008][graphics/Zerbino_etal.png]
+<img src="graphics/Zerbino_etal.png" width="400"/>
 
 Like many scientific programs, Velvet is open source – which means you can read the code if you want to – and freely available [on the web](https://www.ebi.ac.uk/~zerbino/velvet/).
 
