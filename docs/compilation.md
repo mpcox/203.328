@@ -15,16 +15,19 @@ To compile Velvet:
 1. Download the Velvet source files, [*velvet_1.2.10.tgz*](../code/velvet_1.2.10.tgz)
 
 2. Decompress the file:
+
 ```
 tar -xvzf velvet_1.2.10.tgz
 ```
 
 3. Move into the directory *velvet_1.2.10*:
+
 ```
 cd velvet_1.2.10
 ```
 
 4. Compile the program:
+
 ```
 make 'MAXKMERLENGTH=256'
 ```
