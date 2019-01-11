@@ -1,8 +1,7 @@
 # *De Novo* Assembly of Next Gen Sequence Data
 
 [Prof Murray Cox](https://www.genomicus.com)<br>
-School of Fundamental Sciences<br>
-Office: Tower D, Level 5, Room 04
+School of Fundamental Sciences
 
 **In this lab, you will gain experience in taking fragmentary next generation sequencing reads and joining them together to create complete genomic sequences.**
 
@@ -22,7 +21,7 @@ You have already covered basic UNIX methods in module 1. If you are comfortable 
 
 ## Next Generation Sequences
 
-Sequences from next generation technologies come in a lot of different flavors. We will be using sequences generated on the [Illumina platform](http://www.illumina.com/applications/sequencing.html), the dominant one around today.
+Sequences from next generation technologies come in a lot of different flavors. We will be using sequences generated on the [Illumina platform](http://www.illumina.com/applications/sequencing.html), the dominant one in use today.
 
 Next generation sequences are usually found in a format called [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format), where the ‘Q’ stands for ‘quality’.  The entry for a single read would typically look something like this:
 
@@ -94,7 +93,7 @@ XXX - screenshot
 
 Next, you need to choose a sequence dataset to assemble. To start off, let’s use the example dataset called [ME8432.fastq](example/ME8432.fastq). Move the example dataset into your new directory. 
 
-Now, you need to get the programs.  Although there are better ways to set them up, for now just copy-and-paste the programs ‘velveth’ and ‘velvetg’ into this directory.  You can download these programs [here](code).
+Now, you need to get the programs.  Although there are better ways to set them up, for now just copy-and-paste the programs ‘velveth’ and ‘velvetg’ into this directory.  You can download these programs [here](code).  If you want to learn how to compile these programs for your own machine, [look here](compilation.md).
 
 At this point, you are ready to perform an assembly with a chosen k-mer value. Let’s start with a k-mer of 21.
 
