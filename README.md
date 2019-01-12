@@ -12,6 +12,7 @@ School of Fundamental Sciences
 [UNIX Basics](#unix-basics)<br>
 [Next Generation Sequences](#next-generation-sequences)<br>
 [Assembly software](#assembly-software)<br>
+[Installing Velvet](#installing-velvet)<br>
 [Assembly Example](#assembly-example)<br>
 [What Should I Do Now?](#what-should-i-do-now)<br>
 [Research Report](#research-report)
