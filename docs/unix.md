@@ -1,8 +1,7 @@
 # A (Very Brief) Introduction to (Very Simple) UNIX
 
-<br>
 [Return to the main index](../index.html)
-<br>
+<br><br>
 
 The following exercises use this [test directory](../UNIX/test_directory.zip).  The directory contains four files:
 
