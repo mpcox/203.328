@@ -22,25 +22,27 @@ School of Fundamental Sciences
 
 Sequencing costs have reduced by orders of magnitude in recent years. The first human genome took years to produce, cost billions of dollars and required a collaborative effort from thousands of scientists. A little over ten years later, one research scientist can sequence a human genome in a couple of weeks for a little over a thousand dollars.
 
-As sequencing costs have dropped, a large number of organisms have been sequenced. Some of these species are commercially important (cows and corn), others are medically relevant (HIV and hepatitis), while others are interesting for less pragmatic reasons (pandas and poodles). Access to genome sequences is now seen as critical for many research questions, industry goals and government policy decisions. Consequently, these technologies are being adopted rapidly. You can expect to encounter next generation sequencing in many future jobs – regardless of whether you go into academia, industry or government – or just as a private individual.
+As sequencing costs have dropped, a large number of organisms have been sequenced. Some of these species are commercially important (cows and corn), others are medically relevant (HIV and hepatitis), while yet others are interesting for less pragmatic reasons (pandas and poodles). Access to genome sequences is now seen as critical for many research questions, industry goals and government policy decisions. Consequently, these technologies are being adopted rapidly. You can expect to encounter next generation sequencing in many future jobs – regardless of whether you go into academia, industry or government – or just as a private individual.
 
-In this module, you will learn how to assemble a dataset of short next generation sequences. Your goal is to determine which gene and organism a set of sequences come from.
+In this module, you will learn how to assemble a dataset of short next generation sequence reads. Your goal is to act as a forensic scientist and determine which organism and gene a sample comes from.
+
 
 ---
 
 ## UNIX Basics
 
-Sequence assembly is tricky – it is mathematically complex and computationally expensive. Therefore, assembly is typically performed on large UNIX clusters using command line programs. This is the sort of environment we will be using today. 
+Assembly short reads is tricky – it is mathematically complex and computationally intensive. Therefore, assembly is typically performed on large UNIX clusters using command line programs. This is the sort of environment we will be using today. 
 
-You have already covered basic UNIX methods in module 1. If you are comfortable with the UNIX command line, go straight to the tasks for module 5 further down in this document. If you want a quick refresher, [look at the resources here](docs/unix.html).
+You have already covered basic UNIX methods in module 1. If you are comfortable with the UNIX command line, continue straight on with the tasks for module 5. If you want to take a quick refresher on some UNIX commands used in this lab, check out the short tutorial [available here](docs/unix.html).
+
 
 ---
 
 ## Next Generation Sequences
 
-Sequences from next generation technologies come in a lot of different flavors. We will be using sequences generated on the [Illumina platform](http://www.illumina.com/applications/sequencing.html), the dominant one in use today.
+Sequences from next generation technologies come in a lot of different flavors. For this lab, we will be using sequences generated on the [Illumina platform](http://www.illumina.com/applications/sequencing.html), one of the dominant technologies in use today.
 
-Next generation sequences are usually found in a format called [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format), where the ‘Q’ stands for ‘quality’.  The entry for a single read would typically look something like this:
+Next generation sequences are usually provided in a format called [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format), where the ‘Q’ stands for ‘quality’.  The entry for a single read would typically look something like this:
 
 ```
 @ME8432_1
@@ -51,29 +53,30 @@ hhhgh`\ahQhEhhhhhhheOhhQQVhefhhLUheYShhE
 
 Each sequence entry consists of four lines. The first line always starts with ‘@’ and is followed by a unique read identifier (here, ME8432_1). The second line lists the actual DNA (or RNA) sequence. The third line always starts with ‘+’, optionally followed by the unique identifier again. The fourth line lists the quality of each base along the sequence in a fairly esoteric ASCII encoding. You can read more about this quality encoding in this paper:
 
-Cock, P. J. A., C. J. Fields, N. Goto, M. L. Heuer and P. M. Rice. 2010. [The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants](https://doi.org/10.1093/nar/gkp1137). *Nucleic Acids Research* 38:1767--1771.
+Cock PJA, CJ Fields, N Goto, ML Heuer and PM Rice. 2010. [The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants](https://doi.org/10.1093/nar/gkp1137). *Nucleic Acids Research* 38:1767--1771.
 
 <img src="graphics/cock_etal.png" width="700"/>
 
-FASTQ files are typically large. A standard Illumina run produces up to eight lanes of data, each with >300 million different sequence reads. Files for each of these lanes would usually be at least 50 gigabytes in size – more than twice the size of the extended ‘Lord of the Rings’ DVD box set. File sizes are getting bigger all the time.
+FASTQ files are typically large. Standard Illumina runs produce up to eight lanes of data, each with >300 million different sequence reads. Files for just one of these lanes would usually exceed 50 gigabytes – more than twice the size of the extended ‘Lord of the Rings’ DVD box set. Data amounts, and hence file sizes, are getting bigger all the time.
 
-Assembling datasets this large is a major undertaking. You will be working with much smaller datasets in this class. However, you will be using real sequence data from real research projects. The assemblies you perform below are identical to those performed in actual research environments. The only differences are the file sizes and the shorter time these assemblies take to run.
+Assembling datasets this large is a major undertaking. You will be working with much smaller datasets in this lab, but it is real sequence data from real research projects. The assemblies you perform below are identical to those performed in actual research settings. The only difference is that the file sizes are smaller and so the assemblies are (much) shorter to run.
+
 
 ---
 
 ## Assembly software
 
-There are a lot of programs that perform *de novo* sequence assembly – joining up a number of short reads into a single, longer sequence. New programs are being developed all the time.  The one we're going to use here is an old standard, [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/).
+A lot of programs perform *de novo* sequence assembly – joining up short reads into a single, longer sequence. New programs are being developed all the time.  The one we're going to use here is an old standard, [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/).
 
-Daniel Zerbino and Ewen Birney wrote Velvet at the European Bioinformatics Institute in Cambridge, and published a description of its algorithm in 2008:
+Daniel Zerbino and Ewen Birney wrote Velvet at the [European Bioinformatics Institute](https://www.ebi.ac.uk) in Cambridge, and published a description of its algorithm in 2008:
 
-Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read assembly using de Bruijn graphs](https://doi.org/10.1101/gr.074492.107). *Genome Research* 18:821--829.
+Zerbino DR and E Birney. 2008. [Velvet: Algorithms for de novo short read assembly using de Bruijn graphs](https://doi.org/10.1101/gr.074492.107). *Genome Research* 18:821--829.
 
 <img src="graphics/zerbino_etal.png" width="700"/>
 
-Like many scientific programs, Velvet is open source – which means you can read the code if you want to – and freely available [on the web](https://www.ebi.ac.uk/~zerbino/velvet/).
+Like many scientific programs, Velvet is open source – which means you can download and read the code if you want to. Velvet is freely available [on the web](https://www.ebi.ac.uk/~zerbino/velvet/).
 
-Velvet is actually made up of two different programs that need to be run sequentially. These programs are called ```velveth``` and ```velvetg```.
+Velvet is actually a cover term for two different programs that need to be run sequentially. These programs are called ```velveth``` and ```velvetg```.
 
 A typical assembly job would look something like this:
 
@@ -82,36 +85,45 @@ velveth assembly_directory_21 21 -fastq -short input_file.fastq
 velvetg assembly_directory_21
 ```
 
-This means that the output files are placed in a new directory called *assembly_directory_21*, the k-mer size (we’ll talk about this later) is 21, the input format is FASTQ, the data are short reads (e.g., the Illumina technology or similar vs long read technologies like PacBio), and the input file is called ‘input_file.fastq’. Of course, the names of these files and directories must be changed to whatever is appropriate for your study!
+Let's break this down into pieces.
 
-The k-mer value is a vital parameter in *de novo* assembly. The k-mer can be any odd number from 1 to the length of the read. The k-mer is sometimes called the ‘word size’, and represents the length of the unit used to determine whether any two sequences ‘overlap’.
+The output files that Velvet makes are placed in a new directory called *assembly_directory_21*, the k-mer size (we’ll talk about this in the lectures) is 21, the input format is FASTQ, the data are short reads (e.g., the Illumina technology or similar), and the input file containing the sequence data is called ‘input_file.fastq’. Of course, the names of these files and directories need to be changed to whatever is appropriate for your study!
 
-For instance:
+When you think about assembling reads, you probably automatically think about so-called overlap methods.  In other words, you overlap reads until you find matches, and then you join the reads together.  Something like this:
+
 ```
 Read 1:    GGCTAGAGGCTAGCTTCAATGGGCGAAAGACCC
 Read 2:                GCTTCAATGGGCGAAAGACCCGAGAGAGCTGGCT
 Assembly:  GGCTAGAGGCTAGCTTCAATGGGCGAAAGACCCGAGAGAGCTGGCT
 ```
-In practice, assembly with Velvet is not carried out by checking whether two sequences actually overlap (a method used in so-called overlap assembly algorithms), but instead by using a branch of mathematics concerned with networks (de Bruijn assembly algorithms). We will cover this method in a lecture, and you can also find out more about this approach in these papers:
+
+In practice, this kind of approach does not work well with large short-read datasets.  Velvet instead uses a branch of mathematics concerned with networks (de Bruijn graph assembly algorithms).  A key feature of this assembly approach are *k*-mers, which are unique sequences of length *k*.  The k-mer is sometimes called the *word size*.  In Velvet, the *k*-mer is the most important free parameter, and can be any odd number from 1 to the length of the read.
+
+We will cover de Bruijn graph assembly more fully in the lectures, but you can also find out more about this approach in following papers.  I strongly suggest you read some or all of them.  Understanding de Bruijn assembly is crucial to understanding this lab.
+
+Compeau PEC, PA Pevzner and G Tesler. 2013. [How to apply de Bruijn graphs to genome assembly](https://doi.org/10.1038/nbt.2023). *Nature Biotechnology* 29:987-991.
+
+Simpson JT and M Pop. 2015. [The theory and practice of genome sequence assembly](https://doi.org/10.1146/annurev-genom-090314-050032). *Annual Review of Genomics and Human Genetics* 16:153-172.
 
 Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read assembly using de Bruijn graphs](https://doi.org/10.1101/gr.074492.107). *Genome Research* 18:821--829.
+
 
 ---
 
 ## Installing Velvet
 
-For this lab, you will be using machines running macOS.  I have already made the programs for you and you can download them [here](code/macOS_10.14_binaries.zip).  
+You will be using computers running macOS in this lab.  I have already compiled the two programs for you (i.e., ```velveth``` and ```velvetg```) and you can simply download them [here](code/macOS_10.14_binaries.zip).  
 
-If you want to learn how to compile these programs from the source code, or if you want to run them on your own machine, [check out the instructions here](docs/compilation.html).
+If you want to learn how to compile these programs from the original source code, or if you want to run Velvet on your own non-macOS computer, [check out the instructions here](docs/compilation.html).  Compiling programs isn't as hard as it first seems, and it's a good skill to know.
 
 
 ---
 
 ## Assembly Example
 
-Here are the steps needed to assemble a set of FASTQ sequences using Velvet. Note that you will be repeating this exercise on your own dataset later in the lab.
+Below I list the steps needed to assemble a set of FASTQ sequences using Velvet. Note that you will be repeating this exercise on your own dataset later in the lab, so make sure you understand this section well.
 
-First, Make a new directory (say, ```example_assembly```):
+First, make a new directory to perform all your analyses in.  You should use an informative name, but for this test example, we'll use ```example_assembly```:
 
 ```
 mkdir example_assembly
@@ -119,22 +131,40 @@ cd example_assembly
 ls
 ```
 
-Next, you need to choose a sequence dataset to assemble. To start off, let’s use the example dataset called [ME8432.fastq](example/ME8432.fastq). Move the example dataset into your new directory. 
+Next, you need a dataset of short-read sequences to assemble. We'll use the example dataset [ME8432.fastq](example/ME8432.fastq). Move the example dataset file into your new directory. 
 
-Now, you need to get the programs.  Although there are better ways to set them up, for now just copy-and-paste the programs ‘velveth’ and ‘velvetg’ into this directory.  You can download these programs [here](code).  If you want to learn how to compile these programs for your own machine, [look here](docs/compilation.html).
+Take a look at the input reads:
+```
+head ME8432.fastq
+```
+
+Pay particular attention to how long the input reads are. In this example file, the input reads are 40 nucleotides long:
+```
+@ME8432_1
+CTTCTGCTTCAATGGGCGAAAGACCCAATGACCTCATCAC
++ME8432_1
+hhhgh`\ahQhEhhhhhhheOhhQQVhefhhLUheYShhE
+@ME8432_2
+CAAATTGCTGAATTCAAAGAAGCCTTTGCTCTCTTTGATA
++ME8432_2
+hhhhhhhEhfhhhh[hhhhhhhCChahdDDBhFfhhhhhh
+...
+```
+
+Now, you need to get the Velvet programs.  There are better ways to set them up so they can be used anyone on your computer, but for now, let's simply copy-and-paste the program files ```velveth``` and ```velvetg``` into your directory.  As a reminder, you can download these programs [here](code), or learn how to compile them for your own computer [here](docs/compilation.html).
 
 <img src="graphics/program_files.png" width="700"/>
 
-At this point, you are ready to perform an assembly with a chosen k-mer value. Let’s start with a k-mer of 21.
+We are now are ready to perform an assembly with a chosen k-mer value. Let’s start with a k-mer value of 21.  The two Velvet command lines you need to run (described above) are:
 
 ```
 ./velveth ME8432_21 21 -fastq -short ME8432.fastq
 ./velvetg ME8432_21
 ```
 
-These particular commands should complete within seconds. For typical genome scale assemblies, they might take hours to days.
+These commands should complete within seconds, but for typical genome scale assemblies, they might take hours to days.  If they don't finish quickly, there's a problem.  The two common errors are typos and missing files.  Check your command lines very carefully and also make sure that all the files you need are in your directory (read the steps above again).
 
-Look at the Velvet output. Do this by moving into the assembly directory and opening the files are there:
+Assuming the programs ran ok, it's time to look at the Velvet output.  Do this by moving into the assembly directory you produced and seeing what files are in there:
 
 ```
 cd ME8432_21
@@ -145,18 +175,22 @@ You should see a number of files, including *Graph*, *LastGraph*, *Log*, *PreGra
 
 <img src="graphics/velvet_output_files.png" width="700"/>
 
-The main file, *stats.txt*, contains almost all the information we need about the assembly. You should mostly use this file for your analyses below. For the example dataset, it should look something like this:
+Although all of these files contain information, the main files needed for this lab are *stats.txt* and *contigs.fa*.
+
+The *stats.txt* file contains most of the information we need about how well the assembly worked. You should mostly use this file for the analyses you're asked to do below. For the example run, the *stats.txt* file should look something like this:
 
 ```
 ID   lgth   out  in   …
 1    329    0    0    …
 ```
 
-This particular file only contains two lines: a header line and a single entry on the next row. The most interesting columns are the first and second. The first column gives the ID of the assembled fragment (i.e., contig 1). The second column gives the length of this assembled fragment (here, 329 nucleotides). 
+This particular file only contains two lines: a header line and a single entry on the next row.  There will be more lines for other assembly parameters.
 
-For many datasets, you will see a number of assembled fragments rather than just one. Some of these assembled fragments may be very small (even, in extreme cases, just 1 nucleotide).
+The most interesting columns are the first and second. The first column lists the ID number of each assembled fragment, called a *contig* (here, '1').  The second column lists the length of each assembled contig (here, 329 nucleotides). 
 
-The actual assembled sequences are contained in the file *contigs.fa*. The assembled fragments will look something like this:
+For most datasets, you will see far more assembled contigs, and some of these contigs may be very small (even, in extreme cases, just 1 nucleotide).
+
+The actual assembled sequences – the *contigs* – are contained in the file *contigs.fa*. This is just a simple text file containing FASTA sequence records. Each contig will look something like this:
 
 ```
 >NODE_1_length_329_cov_16.844984
@@ -168,20 +202,24 @@ CTCTGAACAAGAACTACTAGAAGCTTTTAAAGTATTCGATAAGAACGGTGATGGTTTAAT
 CTCCGCCGCTGAGTTGAAACACGTGCTACCATCCATTGGTGAAAAATTG
 ```
 
-This assembled sequence has an ID number of 1 and is 329 nucleotides long – just as we saw above. Since the input reads were only 40 nucleotides long, the assembly process has clearly worked – at least to some extent. (Note that poorly assembled contigs – say, of very small size – may appear in the ‘stats.txt’ file, but the program often exclude them from the ‘contigs.fa’ file).
-Finally, we want to find out what organism this sequence comes from and what gene it represents. We will use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and the [GenBank database](https://www.ncbi.nlm.nih.gov/genbank/). 
+As recorded in the *stats.txt* file, this contig has an ID number of 1 and is 329 nucleotides long. Since the input reads were only 40 nucleotides long, the assembly process has clearly worked – at least to some extent. But keep an eye out for poorly assembled contigs – say, contigs smaller than the input read size. These may appear in the *stats.txt* file and should be included in your analyses, but Velvet often excludes them from the *contigs.fa* file.
 
-At the [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) website, choose ‘nucleotide blast’. On the following page, paste your sequence into the box. Under ‘Database’, select ‘Others (nr etc.)’, or try a dedicated gene database, such as 'Reference RNA sequences (refseq_rna)'. Under ‘Optimize for’, select ‘Optimize for: Somewhat similar sequences (blastn)’. Then click, the **BLAST** button.
+Finally, we want to find out what organism this sample originally cames from and what gene the sequences represents. We will use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and the [GenBank database](https://www.ncbi.nlm.nih.gov/genbank/) to find this out. 
 
-You should soon see a screen that looks something like this (formatting may vary depending on website updates):
+At the [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) website, choose *nucleotide blast*.
+
+On the following page, paste your sequence into the box. Under ‘Database’, select ‘Others (nr etc.)’, or try a dedicated gene database, such as 'Reference RNA sequences (refseq_rna)'. Under ‘Optimize for’, select ‘Optimize for: Somewhat similar sequences (blastn)’. Feel free to play around with other options, such as *megablast*. Finally, click the **BLAST** button.
+
+After a little while, you should see a screen that looks something like this (formatting changes regularly as the website is updated):
 
 <img src="graphics/example_blast_results.png" width="700"/>
 
-The red lines (top) represent good blast hits. You are looking for the best match to a gene or mRNA sequence (as opposed to an entire genome, chromosome or clone), which in this case is to GenBank entry NM_001178457. This accession comes from Saccharomyces cerevisiae (Baker’s yeast), and matches the calmodulin gene, which codes for a calcium ion binding protein.
+The red lines (top) represent good blast hits. You want to look for the best match to a gene or mRNA sequence, as opposed to an entire genome, chromosome or clone. In this case, the best match is to GenBank entry NM_001178457. This accession comes from *Saccharomyces cerevisiae* (Baker’s yeast) and matches the calmodulin gene, which codes for a calcium ion binding protein.
 
-For some datasets, the top hits may be to entire genome sequences or other nucleotide fragments (e.g., chromosomes, bacterial artificial chromosomes or BACs, plasmids). You may have to look (well) down the BLAST list to identify what gene your sequence best matches to.
+For some datasets, the top hits may be to entire genome sequences or other nucleotide fragments (e.g., chromosomes, bacterial artificial chromosomes or BACs, plasmids). You may have to look (well) down the BLAST list to identify what gene your sequence best matches to, but the matches are there.
 
-For fun, try blasting a single read from the original test input file ([ME8432.fastq](example/ME8432.fastq)). Does this differ from blasting your larger assembled fragment? If so, how? (*Hint*: the result may depend on the length of your reads, which varies from dataset to dataset).
+For fun, try blasting a single read from the original example input file ([ME8432.fastq](example/ME8432.fastq)). Does the result differ from blasting your larger assembled fragment? If so, how?
+
 
 ---
 
@@ -194,6 +232,7 @@ Can you figure out what organism this dataset came from and what gene was sequen
 Your second challenge is to explore how varying the k-mer value affects the quality of the sequence assembly. Do some k-mer values produce better assemblies, and if so, which ones? The general approach is to find the size of the largest assembled fragment under different values of the k-mer (I suggest running all values from 3 to the length of your reads, odd numbers only). Remember to specify a different k-mer value on the command line, and also change the output directory name (e.g., use something like ```ME8432_19``` if your dataset is ME8432 and your k-mer is 19).
 
 Your third challenge is a very much a ‘stretch’ assignment. When done by hand, you need to run the same commands over and over again, except for changing the k-mer value. Can you figure out a process (i.e., an algorithm) to automate this? Represent your logic as pseudocode (a human readable explanation of what the process is). Taking this further, can you write a real script/program to automate the process? It is fine to use any language and take any approach. Hint: As a place to start, Google ‘bash’ and ‘for loop’. If you get stuck, ask, but I expect to see some real traction before I give out any more hints!
+
 
 ---
 
