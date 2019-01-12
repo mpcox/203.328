@@ -1,8 +1,7 @@
 # Compiling Velvet
 
-<br>
 [Return to the main index](../index.html)
-<br>
+<br><br>
 
 The following text describes how to compile the [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/) assember for your own computer.  That is, how you turn the human readable source code into a program file that your computer can run.
 
