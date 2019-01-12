@@ -1,8 +1,8 @@
 # Compiling Velvet
 
-
+<br>
 [Return to the main index](../index.html)
-
+<br>
 
 The following text describes how to compile the [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/) assember for your own computer.  That is, how you turn the human readable source code into a program file that your computer can run.
 
@@ -33,6 +33,6 @@ make 'MAXKMERLENGTH=256'
 
 Once these commands complete, you should have two program files called ```velvetg``` and ```velveth``` in your directory.  These will run natively on your computer and you can move them wherever you want to.
 
-
+<br>
 [Return to the main index](../index.html)
 
