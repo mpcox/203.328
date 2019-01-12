@@ -97,6 +97,15 @@ Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read a
 
 ---
 
+## Installing Velvet
+
+For this lab, you will be using machines running macOS.  I have already made the programs for you and you can download them [here](code/macOS_10.14_binaries.zip).  
+
+If you want to learn how to compile these programs from the source code, or if you want to run them on your own machine, [check out the instructions here](docs/compilation.html).
+
+
+---
+
 ## Assembly Example
 
 Here are the steps needed to assemble a set of FASTQ sequences using Velvet. Note that you will be repeating this exercise on your own dataset later in the lab.
