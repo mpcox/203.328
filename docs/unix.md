@@ -1,6 +1,8 @@
 # A (Very Brief) Introduction to (Very Simple) UNIX
 
+
 [Return to the main index](../index.html)
+
 
 The following exercises use this [test directory](../UNIX/test_directory.zip).  The directory contains four files:
 
@@ -14,16 +16,17 @@ test_gene_list_3.txt
 
 ### Simple Exercises
 
-1. Moving to a directory (“folder”), back again, and figuring out what directory you are in:
+1. Moving to a directory ('folder'), back again, and figuring out what directory you are in:
    ```
    cd test_directory
    cd ..
    pwd
+   
    cd test_directory
    pwd
    ```
 
-   Directories are hierarchical. You can move multiple directories in one go by using ```cd first_directory/second_directory```. The command ```cd ..``` allows you to step backwards. The ```pwd``` (or *print working directory*) command tells you where you currently are.
+   Directories are hierarchical. You can move multiple directories in one go by using ```cd first_directory/second_directory```. You can step backwards with the command ```cd ..```. The ```pwd``` ('print working directory') command tells you what directory you are currently in.
 
 2. Seeing what files are available:
    ```
@@ -42,7 +45,7 @@ test_gene_list_3.txt
    less test_fasta_file.fna
    ```
    
-   You can use the space bar to move down through the file, or use the up and down arrows to move – unsurprisingly – up and down through the file.  Press ‘q’ to quit.
+   You can use the space bar to move down through the file, or use the up and down arrows to move – unsurprisingly – up and down through the file.  Press *q* to quit.
 
 
 5. Looking at the beginning and end of a file:
@@ -67,7 +70,7 @@ test_gene_list_3.txt
    head -n 50 test_fasta_file.fna | tail -n 10
    ```
 
-9. Redirecting output to a new file (or appending to an existing file) instead writing to the screen:
+9. Redirecting output to a new file, or appending to an existing file, instead of writing to the screen:
    ```
    head -n 10 test_fasta_file.fna > output.txt
    cat output.txt
@@ -87,13 +90,13 @@ test_gene_list_3.txt
    cut -f 2 test_gene_list_1.txt
    ```
 
-2. Sorting a numeric column (here, the second) by gene counts (and then returning the reverse order):
+2. Sorting a numeric column (here, column 2) by gene counts (and then returning the reverse order):
    ```
    sort -k 2 -n test_gene_list_1.txt
    sort -k 2 -n -r test_gene_list_1.txt
    ```
    
-   > Note that different ‘flags’ are used to indicate columns in different programs. For ```cut```, it is ```-f```; for ```sort```, it is ```-k```. Different programs were written by different people and so can have different flags.
+   > Note that different ‘flags’ are used to indicate columns in different programs. ```cut``` uses ```-f```, but  ```sort``` uses ```-k```. Different programs were written by different people at differnt times and so use different flags.
 
 3. Joining files ‘vertically’ and ‘horizontally’:
    ```
@@ -117,14 +120,14 @@ test_gene_list_3.txt
 ### UNIX Cheat Sheet
 
 Task | Command
----- | ----
+:---- | :----
 Find information about a command | ```man command_name```
 Change directory | ```cd directory_name```
 Print working directory | ```pwd```
 List files | ```ls```
 Remove files | ```rm file_names```
 Look at the contents of a file | ```cat file_names```
-Look at the contents of a file in steps  | ```less file_name```
+Look at the contents of a file in stages  | ```less file_name```
 Look at the beginning of a file | ```head [-n integer] file_names```
 Look at the end of a file | ```tail [-n integer] file_names```
 Count the number of lines in a file | ```wc -l file_names```
@@ -147,15 +150,18 @@ Count unique entries in a file | ```sort file_name | uniq -c```
 ### Pearls of Wisdom
 
 1. To save time and avoid mistakes, use tab completion when typing
-   a) Names of Unix commands if they are more than 2–3 characters long
-   b) Names of scripts
-   c) Names of files and directories that are arguments to commands
+   * Names of Unix commands if they are more than 2–3 characters long
+   * Names of scripts
+   * Names of files and directories that are arguments to commands
 
-2. Pay attention when copying and pasting commands from MS Word, PDFs or other programs. They often contain ‘hidden’ characters (e,g., '–' instead of '-').
+2. Pay attention when copying and pasting commands from Word, PDFs or similar files. They often contain ‘hidden’ characters that look similar, but are actually different (e,g., '–' instead of '-').
 
-3. Use Unix tools like ```cat```, ```head```, ```tail```, and ```less``` for viewing text files. Try not to use Microsoft Word or Excel – however tempting – because these can accidentally modify the file (or for big files, crash your machine due to running out of memory).
+3. Use Unix tools like ```cat```, ```head```, ```tail``` and ```less``` for viewing text files. Try not to use Word or Excel – however tempting – because these can accidentally modify the file (or for big files, crash your machine by running out of memory).
 
 4. If you have problems using TextEdit or similar graphical interfaces for writing data files, try using ```nano``` or ```pico``` or more advanced equivalents. For writing and modifying code, use a plain-text editor like TextEdit or TextWrangler or …
 
-5. Use long descriptive names for your data files and scripts (avoid white spaces; use underscores instead). You will make lots of files and appreciate clear naming later!
+5. Use long descriptive names for your data files and scripts (avoid white spaces; use underscores instead). You will make lots of files and appreciate obvious naming later!
+
+
+[Return to the main index](../index.html)
 
