@@ -31,7 +31,7 @@ In this module, you will learn how to assemble a dataset of short next generatio
 
 Sequence assembly is tricky – it is mathematically complex and computationally expensive. Therefore, assembly is typically performed on large UNIX clusters using command line programs. This is the sort of environment we will be using today. 
 
-You have already covered basic UNIX methods in module 1. If you are comfortable with the UNIX command line, go straight to the tasks for module 5 further down in this document. If you want a quick refresher, look at the resources here.
+You have already covered basic UNIX methods in module 1. If you are comfortable with the UNIX command line, go straight to the tasks for module 5 further down in this document. If you want a quick refresher, [look at the resources here](docs/unix.html).
 
 ---
 
