@@ -1,8 +1,8 @@
 # A (Very Brief) Introduction to (Very Simple) UNIX
 
-
+<br>
 [Return to the main index](../index.html)
-
+<br>
 
 The following exercises use this [test directory](../UNIX/test_directory.zip).  The directory contains four files:
 
@@ -162,6 +162,6 @@ Count unique entries in a file | ```sort file_name | uniq -c```
 
 5. Use long descriptive names for your data files and scripts (avoid white spaces; use underscores instead). You will make lots of files and appreciate obvious naming later!
 
-
+<br>
 [Return to the main index](../index.html)
 
