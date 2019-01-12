@@ -53,7 +53,7 @@ Each sequence entry consists of four lines. The first line always starts with �
 
 Cock, P. J. A., C. J. Fields, N. Goto, M. L. Heuer and P. M. Rice. 2010. [The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants](https://doi.org/10.1093/nar/gkp1137). *Nucleic Acids Research* 38:1767--1771.
 
-<img src="graphics/Cock_etal.png" width="700"/>
+<img src="graphics/cock_etal.png" width="700"/>
 
 FASTQ files are typically large. A standard Illumina run produces up to eight lanes of data, each with >300 million different sequence reads. Files for each of these lanes would usually be at least 50 gigabytes in size – more than twice the size of the extended ‘Lord of the Rings’ DVD box set. File sizes are getting bigger all the time.
 
@@ -69,7 +69,7 @@ Daniel Zerbino and Ewen Birney wrote Velvet at the European Bioinformatics Insti
 
 Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read assembly using de Bruijn graphs](https://doi.org/10.1101/gr.074492.107). *Genome Research* 18:821--829.
 
-<img src="graphics/Zerbino_etal.png" width="700"/>
+<img src="graphics/zerbino_etal.png" width="700"/>
 
 Like many scientific programs, Velvet is open source – which means you can read the code if you want to – and freely available [on the web](https://www.ebi.ac.uk/~zerbino/velvet/).
 
@@ -119,11 +119,11 @@ cd example_assembly
 ls
 ```
 
-XXX - screenshot
-
 Next, you need to choose a sequence dataset to assemble. To start off, let’s use the example dataset called [ME8432.fastq](example/ME8432.fastq). Move the example dataset into your new directory. 
 
 Now, you need to get the programs.  Although there are better ways to set them up, for now just copy-and-paste the programs ‘velveth’ and ‘velvetg’ into this directory.  You can download these programs [here](code).  If you want to learn how to compile these programs for your own machine, [look here](docs/compilation.html).
+
+<img src="graphics/program_files.png" width="700"/>
 
 At this point, you are ready to perform an assembly with a chosen k-mer value. Let’s start with a k-mer of 21.
 
@@ -143,7 +143,7 @@ ls
 
 You should see a number of files, including *Graph*, *LastGraph*, *Log*, *PreGraph*, *Roadmaps*, *Sequences*, *contigs.fa* and *stats.txt*.  Take a look at some of these files using the command ```cat``` or similar.
 
-XXX - screenshot showing files
+<img src="graphics/velvet_output_files.png" width="700"/>
 
 The main file, *stats.txt*, contains almost all the information we need about the assembly. You should mostly use this file for your analyses below. For the example dataset, it should look something like this:
 
@@ -171,11 +171,11 @@ CTCCGCCGCTGAGTTGAAACACGTGCTACCATCCATTGGTGAAAAATTG
 This assembled sequence has an ID number of 1 and is 329 nucleotides long – just as we saw above. Since the input reads were only 40 nucleotides long, the assembly process has clearly worked – at least to some extent. (Note that poorly assembled contigs – say, of very small size – may appear in the ‘stats.txt’ file, but the program often exclude them from the ‘contigs.fa’ file).
 Finally, we want to find out what organism this sequence comes from and what gene it represents. We will use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and the [GenBank database](https://www.ncbi.nlm.nih.gov/genbank/). 
 
-At the [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) website, choose ‘nucleotide blast’. On the following page, paste your sequence into the box. Under ‘Database’, select ‘Others (nr etc.)’. Under ‘Optimize for’, select ‘Optimize for: Somewhat similar sequences (blastn)’. Then click, the **BLAST** button.
+At the [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) website, choose ‘nucleotide blast’. On the following page, paste your sequence into the box. Under ‘Database’, select ‘Others (nr etc.)’, or try a dedicated gene database, such as 'Reference RNA sequences (refseq_rna)'. Under ‘Optimize for’, select ‘Optimize for: Somewhat similar sequences (blastn)’. Then click, the **BLAST** button.
 
 You should soon see a screen that looks something like this (formatting may vary depending on website updates):
 
-XXX - screenshot
+<img src="graphics/example_blast_results.png" width="700"/>
 
 The red lines (top) represent good blast hits. You are looking for the best match to a gene or mRNA sequence (as opposed to an entire genome, chromosome or clone), which in this case is to GenBank entry NM_001178457. This accession comes from Saccharomyces cerevisiae (Baker’s yeast), and matches the calmodulin gene, which codes for a calcium ion binding protein.
 
