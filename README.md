@@ -16,8 +16,8 @@ School of Fundamental Sciences
 [Assembly Example](#assembly-example)<br>
 [What Should I Do Now?](#what-should-i-do-now)<br>
 [Pseudocode and Code](#pseudocode-and-code)<br>
-[Research Report](#research-report)
-[Grading Criteria](#grading-criteria)]
+[Research Report](#research-report)<br>
+[Grading Criteria](#grading-criteria)<br>
 [Due Date](#due-date)
 
 
