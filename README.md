@@ -23,20 +23,20 @@ School of Fundamental Sciences
 
 ## Background
 
-Sequencing costs have reduced by orders of magnitude in recent years. The first human genome took years to produce, cost billions of dollars and required a collaborative effort from thousands of scientists. A little over ten years later, one research scientist can sequence a human genome in a couple of weeks for a little over a thousand dollars.
+Sequencing costs have reduced by orders of magnitude in recent years. The first human genome took years to produce, cost billions of dollars and required the collaborative effort of thousands of scientists. Not much more than ten years later, one research scientist can sequence a human genome in a few days for a little over a thousand dollars.
 
-As sequencing costs have dropped, a large number of organisms have been sequenced. Some of these species are commercially important (cows and corn), others are medically relevant (HIV and hepatitis), while yet others are interesting for less pragmatic reasons (pandas and poodles). Access to genome sequences is now seen as critical for many research questions, industry goals and government policy decisions. Consequently, these technologies are being adopted rapidly. You can expect to encounter next generation sequencing in many future jobs – regardless of whether you go into academia, industry or government – or just as a private individual.
+As sequencing costs have dropped, a large number of organisms have been sequenced. Some of these species are commercially important (cows and corn), others are medically relevant (HIV and hepatitis), while yet others are interesting for less pragmatic reasons (pandas and poodles). Access to genome sequences is now seen as default baseline information for many research questions, industry goals and government policy decisions. Consequently, these sequences technologies are being adopted rapidly. You can expect to encounter next generation sequence data in many jobs – regardless of whether you go into academia, industry or government – or just as you go about life as a private individual.
 
-In this module, you will learn how to assemble a dataset of short next generation sequence reads. Your goal is to act as a forensic scientist and determine which organism and gene a sample comes from.
+In this module, you will learn how to assemble a dataset of next generation short-read sequences. Your purpose is to act as a forensic scientist and determine which organism and gene a sample comes from.
 
 
 ---
 
 ## UNIX Basics
 
-Assembly short reads is tricky – it is mathematically complex and computationally intensive. Therefore, assembly is typically performed on large UNIX clusters using command line programs. This is the sort of environment we will be using today. 
+Assembling short reads is tricky – it is mathematically complex and computationally intensive. For these reasons, assembly is typically performed on large UNIX clusters using command line programs. This is the sort of work environment we will be using today. 
 
-You have already covered basic UNIX methods in module 1. If you are comfortable with the UNIX command line, continue straight on with the tasks for module 5. If you want to take a quick refresher on some UNIX commands used in this lab, check out the short tutorial [available here](docs/unix.html).
+You have already covered basic UNIX commands in module 1. If you are comfortable with the UNIX command line, continue straight on below with the tasks for module 5. If you prefer to take a quick refresher on some UNIX commands that may be useful for this lab, check out the short tutorial [here](docs/unix.html).
 
 
 ---
@@ -45,7 +45,7 @@ You have already covered basic UNIX methods in module 1. If you are comfortable 
 
 Sequences from next generation technologies come in a lot of different flavors. For this lab, we will be using sequences generated on the [Illumina platform](http://www.illumina.com/applications/sequencing.html), one of the dominant technologies in use today.
 
-Next generation sequences are usually provided in a format called [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format), where the ‘Q’ stands for ‘quality’.  The entry for a single read would typically look something like this:
+Next generation sequences are usually provided in a format called [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format), where the *Q* stands for *quality*.  The entry for a single read would typically look something like this:
 
 ```
 @ME8432_1
@@ -54,7 +54,7 @@ CTTCTGCTTCAATGGGCGAAAGACCCAATGACCTCATCAC
 hhhgh`\ahQhEhhhhhhheOhhQQVhefhhLUheYShhE
 ```
 
-Each sequence entry consists of four lines. The first line always starts with ‘@’ and is followed by a unique read identifier (here, ME8432_1). The second line lists the actual DNA (or RNA) sequence. The third line always starts with ‘+’, optionally followed by the unique identifier again. The fourth line lists the quality of each base along the sequence in a fairly esoteric ASCII encoding. You can read more about this quality encoding in this paper:
+Each sequence entry consists of four lines. The first line always starts with ‘@’ and is followed by a unique read identifier (here, *ME8432_1*). The second line lists the actual DNA (or RNA) sequence. The third line always starts with ‘+’, optionally followed by the unique identifier again. The fourth line lists the quality of each base along the sequence in a fairly esoteric ASCII encoding. You can read more about how this quality information is encoded in this paper:
 
 Cock PJA, CJ Fields, N Goto, ML Heuer and PM Rice. 2010. [The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants](https://doi.org/10.1093/nar/gkp1137). *Nucleic Acids Research* 38:1767--1771.
 
@@ -62,14 +62,14 @@ Cock PJA, CJ Fields, N Goto, ML Heuer and PM Rice. 2010. [The Sanger FASTQ file 
 
 FASTQ files are typically large. Standard Illumina runs produce up to eight lanes of data, each with >300 million different sequence reads. Files for just one of these lanes would usually exceed 50 gigabytes – more than twice the size of the extended ‘Lord of the Rings’ DVD box set. Data amounts, and hence file sizes, are getting bigger all the time.
 
-Assembling datasets this large is a major undertaking. You will be working with much smaller datasets in this lab, but it is real sequence data from real research projects. The assemblies you perform below are identical to those performed in actual research settings. The only difference is that the file sizes are smaller and so the assemblies are (much) shorter to run.
+Assembling datasets this large is a major undertaking. You will be working with much smaller datasets in this lab, but this lab exercise purposely uses real sequence data from real research projects. The assemblies you perform below are identical to those undertaken in genuine research settings. The only difference is that the file sizes are smaller and so the assemblies are (much) quicker to run.
 
 
 ---
 
 ## Assembly Software
 
-A lot of programs perform *de novo* sequence assembly – joining up short reads into a single, longer sequence. New programs are being developed all the time.  The one we're going to use here is an old standard, [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/).
+There are a lot of programs that perform *de novo* sequence assembly – joining up short reads into a single, longer sequence. New programs are being developed all the time.  The software we're going to use here is an old standard, [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/).
 
 Daniel Zerbino and Ewen Birney wrote Velvet at the [European Bioinformatics Institute](https://www.ebi.ac.uk) in Cambridge, and published a description of its algorithm in 2008:
 
@@ -77,9 +77,9 @@ Zerbino DR and E Birney. 2008. [Velvet: Algorithms for de novo short read assemb
 
 <img src="graphics/zerbino_etal.png" width="700"/>
 
-Like many scientific programs, Velvet is open source – which means you can download and read the code if you want to. Velvet is freely available [on the web](https://www.ebi.ac.uk/~zerbino/velvet/).
+Like many scientific programs, Velvet is open source – which means you can download and read the code if you want to. Velvet can be freely downloaded [from the web](https://www.ebi.ac.uk/~zerbino/velvet/).
 
-Velvet is actually a cover term for two different programs that need to be run sequentially. These programs are called ```velveth``` and ```velvetg```.
+Velvet is actually a cover name for two different programs that need to be run sequentially. These programs are called ```velveth``` and ```velvetg```.
 
 A typical assembly job would look something like this:
 
@@ -90,9 +90,9 @@ velvetg assembly_directory_21
 
 Let's break this down into pieces.
 
-The output files that Velvet makes are placed in a new directory called *assembly_directory_21*, the k-mer size (we’ll talk about this in the lectures) is 21, the input format is FASTQ, the data are short reads (e.g., the Illumina technology or similar), and the input file containing the sequence data is called ‘input_file.fastq’. Of course, the names of these files and directories need to be changed to whatever is appropriate for your study!
+The output files that Velvet makes are placed in a new directory called *assembly_directory_21*, the k-mer size (we’ll talk about this in the lectures) is 21, the input format is FASTQ, the data are short reads (e.g., the Illumina technology or similar), and the input file that contains the sequence data is called ```input_file.fastq```. Of course, the names of these files and directories will need to be changed to whatever is appropriate for your study!
 
-When you think about assembling reads, you probably automatically think about so-called overlap methods.  In other words, you overlap reads until you find matches, and then you join the reads together.  Something like this:
+When you think about assembling reads, you probably automatically bring to mind so-called overlap methods.  In other words, you overlap reads until you find matches, and then you join those overlapped reads together.  Something like this:
 
 ```
 Read 1:    GGCTAGAGGCTAGCTTCAATGGGCGAAAGACCC
@@ -100,9 +100,9 @@ Read 2:                GCTTCAATGGGCGAAAGACCCGAGAGAGCTGGCT
 Assembly:  GGCTAGAGGCTAGCTTCAATGGGCGAAAGACCCGAGAGAGCTGGCT
 ```
 
-In practice, this kind of approach does not work well with large short-read datasets.  Velvet instead uses a branch of mathematics concerned with networks (de Bruijn graph assembly algorithms).  A key feature of this assembly approach are *k*-mers, which are unique sequences of length *k*.  The k-mer is sometimes called the *word size*.  In Velvet, the *k*-mer is the most important free parameter, and can be any odd number from 1 to the length of the read.
+While intuitive this kind of approach does not work well with large short-read datasets in practice.  Velvet instead uses a branch of mathematics concerned with networks (de Bruijn graph assembly algorithms).  A key feature of this assembly approach is the *k*-mer, a unique sequence of length *k*.  *k*-mers are sometimes called *word sizes*.  In Velvet, the *k*-mer is the most important free parameter, and can be any odd number from 3 to the length of the read.
 
-We will cover de Bruijn graph assembly more fully in the lectures, but you can also find out more about this approach in following papers.  I strongly suggest you read some or all of them.  Understanding de Bruijn assembly is crucial to understanding this lab.
+We will cover de Bruijn graph assembly more fully in the lectures, but you should also learn more about this approach in the following papers.  I strongly suggest you read some or all of them.  *Understanding de Bruijn assembly is crucial to completing this lab*.
 
 Compeau PEC, PA Pevzner and G Tesler. 2013. [How to apply de Bruijn graphs to genome assembly](https://doi.org/10.1038/nbt.2023). *Nature Biotechnology* 29:987-991.
 
@@ -117,7 +117,7 @@ Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read a
 
 You will be using computers running macOS in this lab.  I have already compiled the two programs for you (i.e., ```velveth``` and ```velvetg```) and you can simply download them [here](code/macOS_10.14_binaries.zip).  
 
-If you want to learn how to compile these programs from the original source code, or if you want to run Velvet on your own non-macOS computer, [check out the instructions here](docs/compilation.html).  Compiling programs isn't as hard as it first seems, and it's a good skill to know.
+If you want to learn how to compile these programs from the original source code, or if you want to run Velvet on your own non-macOS computer, [check out the instructions here](docs/compilation.html).  Compiling programs isn't as hard as it first seems, and it is a very useful skill to know.
 
 
 ---
@@ -126,7 +126,7 @@ If you want to learn how to compile these programs from the original source code
 
 Below I list the steps needed to assemble a set of FASTQ sequences using Velvet. Note that you will be repeating this exercise on your own dataset later in the lab, so make sure you understand this section well.
 
-First, make a new directory to perform all your analyses in.  You should use an informative name, but for this test example, we'll use ```example_assembly```:
+First, make a new directory where you will perform all of your analyses.  You should use an informative name, but for this test example, we'll just use ```example_assembly```:
 
 ```
 mkdir example_assembly
@@ -154,46 +154,46 @@ hhhhhhhEhfhhhh[hhhhhhhCChahdDDBhFfhhhhhh
 ...
 ```
 
-Now, you need to get the Velvet programs.  There are better ways to set them up so they can be used anyone on your computer, but for now, let's simply copy-and-paste the program files ```velveth``` and ```velvetg``` into your directory.  As a reminder, you can download these programs [here](code), or learn how to compile them for your own computer [here](docs/compilation.html).
+Now, you need to get the Velvet programs.  There are better ways to set them up so they can be used anywhere on your computer, but for now, let's simply copy-and-paste the program files ```velveth``` and ```velvetg``` into your directory.  As a reminder, you can download these programs [here](code/macOS_10.14_binaries.zip), or learn how to compile them for your own computer [here](docs/compilation.html).
 
 <img src="graphics/program_files.png" width="700"/>
 
-We are now are ready to perform an assembly with a chosen k-mer value. Let’s start with a k-mer value of 21.  The two Velvet command lines you need to run (described above) are:
+We are now are ready to perform an assembly with a chosen *k*-mer value. Let’s start with a *k*-mer value of 21.  The two Velvet command lines you need to run (described above) are:
 
 ```
 ./velveth ME8432_21 21 -fastq -short ME8432.fastq
 ./velvetg ME8432_21
 ```
 
-These commands should complete within seconds, but for typical genome scale assemblies, they might take hours to days.  If they don't finish quickly, there's a problem.  The two common errors are typos and missing files.  Check your command lines very carefully and also make sure that all the files you need are in your directory (read the steps above again).
+These commands should complete within seconds, but for typical genome scale assemblies, they might take hours to days.  If these commands don't finish quickly, there's a problem.  The two most common errors are typos and missing files.  Check your command lines very carefully and also make sure that all the files you need are in your directory (read the steps above again).
 
-Assuming the programs ran ok, it's time to look at the Velvet output.  Do this by moving into the assembly directory you produced and seeing what files are in there:
+Assuming the programs ran ok, it's time to look at the Velvet output.  Do this by moving into the assembly directory you created and see what files are in there:
 
 ```
 cd ME8432_21
 ls
 ```
 
-You should see a number of files, including *Graph*, *LastGraph*, *Log*, *PreGraph*, *Roadmaps*, *Sequences*, *contigs.fa* and *stats.txt*.  Take a look at some of these files using the command ```cat``` or similar.
+You should have a number of files, including *Graph*, *LastGraph*, *Log*, *PreGraph*, *Roadmaps*, *Sequences*, *contigs.fa* and *stats.txt*.  Take a look at some of these files using the command ```cat``` or similar.
 
 <img src="graphics/velvet_output_files.png" width="700"/>
 
 Although all of these files contain information, the main files needed for this lab are *stats.txt* and *contigs.fa*.
 
-The *stats.txt* file contains most of the information we need about how well the assembly worked. You should mostly use this file for the analyses you're asked to do below. For the example run, the *stats.txt* file should look something like this:
+The *stats.txt* file contains most of the information we need about how well the assembly process worked. You should mostly use this file for the analyses you are asked to do below. For the example run, the *stats.txt* file should look something like this:
 
 ```
 ID   lgth   out  in   …
 1    329    0    0    …
 ```
 
-This particular file only contains two lines: a header line and a single entry on the next row.  There will be more lines for other assembly parameters.
+This particular file only contains two lines: a header line and a single entry on the next row.  There will be (many) more lines when you use other assembly parameters instead.
 
-The most interesting columns are the first and second. The first column lists the ID number of each assembled fragment, called a *contig* (here, '1').  The second column lists the length of each assembled contig (here, 329 nucleotides). 
+The most helpful columns are the first and second. The first column lists the ID number of each assembled fragment, called a *contig* (here, this identifier is *1*).  The second column lists the length of each assembled contig (here, 329 nucleotides). 
 
-For most datasets, you will see far more assembled contigs, and some of these contigs may be very small (even, in extreme cases, just 1 nucleotide).
+For most datasets, you will see far more assembled contigs, and some of these contigs may be very small (even, in extreme cases, just 1 nucleotide long).
 
-The actual assembled sequences – the *contigs* – are contained in the file *contigs.fa*. This is just a simple text file containing FASTA sequence records. Each contig will look something like this:
+The actual assembled sequences – the *contigs* – are contained in the file *contigs.fa*. This is just a simple text file containing [FASTA](https://en.wikipedia.org/wiki/FASTA_format) sequence records. Each contig will look something like this:
 
 ```
 >NODE_1_length_329_cov_16.844984
@@ -207,19 +207,19 @@ CTCCGCCGCTGAGTTGAAACACGTGCTACCATCCATTGGTGAAAAATTG
 
 As recorded in the *stats.txt* file, this contig has an ID number of 1 and is 329 nucleotides long. Since the input reads were only 40 nucleotides long, the assembly process has clearly worked – at least to some extent. But keep an eye out for poorly assembled contigs – say, contigs smaller than the input read size. These may appear in the *stats.txt* file and should be included in your analyses, but Velvet often excludes them from the *contigs.fa* file.
 
-Finally, we want to find out what organism this sample originally cames from and what gene the sequences represents. We will use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and the [GenBank database](https://www.ncbi.nlm.nih.gov/genbank/) to find this out. 
+Finally, we want to find out what organism this sample originally came from and what gene the sequence represents. We will use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and the [GenBank database](https://www.ncbi.nlm.nih.gov/genbank/) to find this out. 
 
 At the [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) website, choose *nucleotide blast*.
 
-On the following page, paste your sequence into the box. Under ‘Database’, select ‘Others (nr etc.)’, or try a dedicated gene database, such as 'Reference RNA sequences (refseq_rna)'. Under ‘Optimize for’, select ‘Optimize for: Somewhat similar sequences (blastn)’. Feel free to play around with other options, such as *megablast*. Finally, click the **BLAST** button.
+On the following page, paste your sequence into the box. Under ‘Database’, select ‘Others (nr etc.)’, or try a dedicated gene database, such as 'Reference RNA sequences (refseq_rna)'. Under ‘Optimize for’, select ‘Optimize for: Somewhat similar sequences (blastn)’. Feel free to play around with other options, such as *megablast* too. Finally, click the **BLAST** button.
 
-After a little while, you should see a screen that looks something like this (formatting changes regularly as the website is updated):
+After a little while, you should see a screen that looks something like this (the formatting changes regularly as the website is updated):
 
 <img src="graphics/example_blast_results.png" width="700"/>
 
-The red lines (top) represent good blast hits. You want to look for the best match to a gene or mRNA sequence, as opposed to an entire genome, chromosome or clone. In this case, the best match is to GenBank entry NM_001178457. This accession comes from *Saccharomyces cerevisiae* (Baker’s yeast) and matches the calmodulin gene, which codes for a calcium ion binding protein.
+The red lines (top) represent good blast hits. You want to look for the best match to a gene or mRNA sequence, as opposed to an entire genome, chromosome or clone. In this case, the best match is to GenBank entry NM_001178457. This accession comes from *Saccharomyces cerevisiae* (Baker’s yeast) and matches the *calmodulin* gene, which codes for a calcium ion binding protein.
 
-For some datasets, the top hits may be to entire genome sequences or other nucleotide fragments (e.g., chromosomes, bacterial artificial chromosomes or BACs, plasmids). You may have to look (well) down the BLAST list to identify what gene your sequence best matches to, but the matches are there.
+For some datasets, the top hits may be to entire genome sequences or other nucleotide fragments (e.g., chromosomes, bacterial artificial chromosomes or BACs, or plasmids). You may have to look (well) down the BLAST list to identify what gene your sequence best matches to, but the matches will be there.
 
 For fun, try blasting a single read from the original example input file ([ME8432.fastq](example/ME8432.fastq)). Does the result differ from blasting your larger assembled fragment? If so, how?
 
@@ -228,9 +228,9 @@ For fun, try blasting a single read from the original example input file ([ME843
 
 ## What Should I Do Now?
 
-In this lab, you have three challenges.  You then have to write a free-style report about what you find.  (So make sure you read the [information section](#research-report) on the report very carefully too).
+In this lab, you have three challenges.  You then have to write a free-style report about what you found, so make sure you read the [information section](#research-report) on the report very carefully too.
 
-Your first challenge is to choose one dataset from the [FASTQ files provided](datasets) and perform *de novo* assembly using Velvet.  The dataset options are:
+Your first challenge is to choose one dataset from the FASTQ files provided and perform *de novo* assembly using Velvet.  The dataset options are:
 
 [CL9110.fastq](datasets/CL9110.fastq)<br>
 [DX1838.fastq](datasets/DX1838.fastq)<br>
@@ -245,22 +245,22 @@ Your first challenge is to choose one dataset from the [FASTQ files provided](da
 
 Work out what organism your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (ME8432.fastq), and do not choose the same dataset as your neighbor!
 
-> Hint: save your files if you want to use them at home. All of the output files made by Velvet are simple text files that you can open in any basic text editor, like TextEdit or Notepad.
+> Hint: save your files if you want to look at them at home. All of the output files made by Velvet are simple text files that you can open in any basic text editor, like TextEdit or Notepad.
 
-Your second challenge is to determine how varying the *k*-mer value affects the quality of your sequence assembly. Do some *k*-mer values produce better assemblies? And if so, which ones?  I suggest running all values of *k* from 3 to the length of your reads, odd numbers only.  To see how the assembly changes, work out how many contigs are produced at each value of *k*, the average size of these contigs, and the size of the largest contig.  Record these values.
+Your second challenge is to determine how varying the *k*-mer value affects the quality of your sequence assembly. Do some *k*-mer values produce better assemblies? And if so, which ones?  I suggest running all values of *k* from 3 to the length of your reads, odd numbers only.  To see how the assemblies change, work out how many contigs are produced at each value of *k*, the average size of these contigs, and the size of the largest contig.  Record these values.
 
 > Hint: remember to set a new output directory name and change the *k*-mer value for every new assembly you run.  You don’t want to call the output directory ME8432_21 every time!
 
-Your third challenge is a very much a ‘stretch’ assignment. When you make assemblies with different *k*-mer values by hand, you have to run the same commands over and over again, just changing the k-mer value each time. In this challenge, you need to figure out a process (i.e., an algorithm) to automate what you did by hand above.  Represent your logic using pseudocode (see below).  Taking this further, write real code or a script to implement your process.  You can take any approach and use any language.
+Your third challenge is very much a ‘stretch’ assignment. When you make assemblies with different *k*-mer values by hand, you have to run the same commands over and over again, just changing the k-mer value each time. In this challenge, you need to find a way (i.e., an algorithm) to automate what you did by hand above.  Represent your logic using pseudocode (see below).  Taking this further, write real code or a script to implement your process.  You can take any approach and use any language.
 
-> Hint: As a place to start, run an internet search for the term 'for loop'.  Ask if you get stuck, but I expect to see some real traction before I give out any more hints!
+> Hint: As a place to start, run an internet search for the term 'for loop'.  Ask if you get stuck, but I expect to see some real traction before I give out any more ideas!
 
 
 ---
 
 ## Pseudocode and Code
 
-[Pseudocode](https://en.wikipedia.org/wiki/Pseudocode) in an informal, human-readable description of an algorithm or piece of software code.  
+[Pseudocode](https://en.wikipedia.org/wiki/Pseudocode) in an informal, human-readable description of an algorithm or piece of program code.  
 
 A very simple example might be:
 
@@ -271,9 +271,9 @@ Otherwise
     Print "failed"
 ```
 
-This is not something a computer could run.  Nor would a person.  We would probably say: "the student passed if they got 50%, otherwise they failed".  Pseudocode sits between these two extremes – it describes a series of computations that are very close to what a computer would need to run, without worrying about the details.
+This is not something a computer could run.  A person wouldn't say this either.  We would probably say: "the student failed unless they got 50%".  Pseudocode sits between these two extremes – it describes a series of computations that are very close to what a computer needs to run, without worrying about the details.
 
-Pseudo code is helpful precisely because it *is* very close to what a computer needs to run.  By laying out a process in pseudocode, we are quickly able to write code that a computer can read.  An example in R for the pseudocode above might be:
+Pseudo code is helpful precisely because it *is* very close to what a computer needs.  By laying out our logic in pseudocode, we are quickly able to write code that a computer can read.  An example in R for the pseudocode above might be:
 
 ```r
 student_grade <- 65
@@ -284,7 +284,7 @@ if( student_grade >= 50){
 }
 ```
 
-For the stretch exercise (challenge three), you need to write pseudocode and then turn it into actual code that a computer can run.  Although this can get arbitrarily complex, the code (and pseudocode) to automate the Velvet assembles is on the simple end.  
+For the stretch exercise (challenge three), you need to write pseudocode and turn it into actual code that a computer can run.  Although this sort of task can get arbitrarily complex, the code (and pseudocode) needed to automate the Velvet assemblies is at the simple end.  
 
 Jump online and start searching for ideas.
 
@@ -295,33 +295,33 @@ Jump online and start searching for ideas.
 
 This section is very important because it describes what you need to do for your report.  This is where all the marks for this module come from.
 
-Your report should be 4-5 pages and should include:
+Your report should be 4-5 pages long and should include:
 
 * Your name and Massey student ID
 * Brief sections labeled Introduction, Methods, Results, Discussion and References.  This text should contain:
 
   1. The ID of your dataset (e.g., AB1234)
-  2. The full DNA sequence of the largest fragment you assembled
+  2. The full DNA sequence of the largest contig you assembled
   3. The species you think your sample came from (plus your reasoning)
   4. The gene you think your sequence represents (plus your reasoning)
-  5. A brief description of this gene (e.g., using online information, such as GenBank). What does the gene do? How does it work?
-  > Hint: A proportion of your marks will be allocated to getting the right species and gene. Make sure that you are certain about this! Analyze a number of different assembled fragments if you are not sure, and ask for advice in class. 
+  5. A brief description of this gene found using online information, such as GenBank. What does the gene do? How does it work?
+  > Hint: A proportion of your marks will be allocated to getting the right species and gene. Make sure that you are certain about this! Blast a number of different contigss if you are not sure, and ask for advice in class. 
 
 * Three graphs, plotted in R, that show the effects of *k*-mer value on assembly quality: *k*-mer value versus number of contigs; *k*-mer value versus average contig length; and *k*-mer value versus the maximum contig length.  These graphs should be plotted from a *k*-mer of 3 to the size of your input reads (odd numbered *k*-mers only).
    > Note: given your training in module 1 and later in this course, all graphs should now be plotted in R.
 
-* Results text describing what these plots look like and describing their similarities and differences.
+* Results text describing what these plots look like, and noting their similarities and differences.
 
-* The exact text of your pseudocode and actual computer code to automate the assembly process. 
+* The pseudocode and exact computer code you used to automate the assembly process. 
    > Hint: the code will be run to check that it works.  Take care not to just cut-and-paste.
 
-* Discussion text using what you know about de Bruijn graph assembly to explain why these graphs have their characteristic shapes.  Why do we see better assemblies at some values of *k* and not others?  What are the features of the data and the de Bruijn graph method that cause the graphs to have these shapes?  
-   > Hint: A lot of the marks of this assignment are based on this discussion.  Spend a lot of time on this part, and make sure you really understand what the assembler is doing and how that affects the graphs you have plotted.
+* Discussion text that uses what you know about de Bruijn graph assembly to explain why these three graphs have their characteristic shapes.  Why do we see better assemblies at some values of *k* and not others?  What are the features of the data and the de Bruijn graph method that cause the graphs to have these shapes?  
+   > Hint: A lot of the marks for this assignment are awarded for this discussion.  Spend plenty of time on this part, and make sure you really understand what the assembler is doing and how that creates the graphs you have plotted.
 
 
 ## Grading Criteria
 
-The report should be a full and professional document. Make sure the layout is clear and check your spelling!  The grading criteria below show the allocation of marks.  Note that you get most marks for explaining why the graphs have their characteristic shapes and how this relates to the de Bruijn assembly process.  Allocate your time and effort accordingly.
+Your report should be a complete and professional document. Make sure the layout is clear and check your spelling!  The grading criteria below list the allocation of marks.  Note that you get most marks for explaining why the graphs have their characteristic shapes and how this relates to the de Bruijn assembly process.  Allocate your time and effort accordingly.
 
 Task | Marks | Percentage
 :---- | ----: | ----:
@@ -330,13 +330,13 @@ Correct species and gene name | 1 | 5
 Description of gene and its function | 2 | 10
 R graphs formatted properly | 3 | 15
 Graph description | 4 | 20
-Graph interpretation relative to de Bruijn theory | 5 | 25
+Graph interpretation informed by de Bruijn theory | 5 | 25
 Pseudocode and code automation | 4 | 20
    | 20 | 100
 
 ## Due Date
 
-Reports are due at the date and time announced in class (usually at noon on the Wednesday of week 12).  Either hand me a hard copy, or preferably, email a copy as a PDF to me at <&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;>. 
+Reports are due on the date and time announced in class (usually at noon on the Wednesday of week 12).  Either hand me a hard copy, or preferably, email a PDF copy to me at [&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;](&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;). 
 
-Note that this is the last assignment of the course and it is due in the final week of term.  While I will happily comment on reports received after the due date, late reports cannot be awarded marks.
+Note that this is the final assignment of the course and it is due in the last week of term.  While I will happily comment on reports received after the due date, late reports cannot be awarded marks.
 
