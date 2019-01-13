@@ -230,7 +230,20 @@ For fun, try blasting a single read from the original example input file ([ME843
 
 In this lab, you have three challenges.  You then have to write a free-style report about what you find.  (So make sure you read the [information section](#research-report) on the report very carefully too).
 
-Your first challenge is to choose one dataset from the [FASTQ files provided](datasets) and perform *de novo* assembly using Velvet. Work out what organism your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (ME8432.fastq), and do not choose the same dataset as your neighbor!
+Your first challenge is to choose one dataset from the [FASTQ files provided](datasets) and perform *de novo* assembly using Velvet.  The dataset options are:
+
+[CL9110.fastq](datasets/CL9110.fastq)<br>
+[DX1838.fastq](datasets/DX1838.fastq)<br>
+[FW3273.fastq](datasets/FW3273.fastq)<br>
+[HU6186.fastq](datasets/HU6186.fastq)<br>
+[JV7597.fastq](datasets/JV7597.fastq)<br>
+[KH5269.fastq](datasets/KH5269.fastq)<br>
+[OX2475.fastq](datasets/OX2475.fastq)<br>
+[RY4458.fastq](datasets/RY4458.fastq)<br>
+[WB2600.fastq](datasets/WB2600.fastq)<br>
+[YR7829.fastq](datasets/YR7829.fastq)
+
+Work out what organism your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (ME8432.fastq), and do not choose the same dataset as your neighbor!
 
 > Hint: save your files if you want to use them at home. All of the output files made by Velvet are simple text files that you can open in any basic text editor, like TextEdit or Notepad.
 
