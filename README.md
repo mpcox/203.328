@@ -11,11 +11,14 @@ School of Fundamental Sciences
 [Background](#background)<br>
 [UNIX Basics](#unix-basics)<br>
 [Next Generation Sequences](#next-generation-sequences)<br>
-[Assembly software](#assembly-software)<br>
+[Assembly Software](#assembly-software)<br>
 [Installing Velvet](#installing-velvet)<br>
 [Assembly Example](#assembly-example)<br>
 [What Should I Do Now?](#what-should-i-do-now)<br>
+[Pseudocode and Code](#pseudocode-and-code)<br>
 [Research Report](#research-report)
+[Grading Criteria](#grading-criteria)]
+[Due Date](#due-date)
 
 
 ## Background
@@ -64,7 +67,7 @@ Assembling datasets this large is a major undertaking. You will be working with 
 
 ---
 
-## Assembly software
+## Assembly Software
 
 A lot of programs perform *de novo* sequence assembly – joining up short reads into a single, longer sequence. New programs are being developed all the time.  The one we're going to use here is an old standard, [Velvet](https://www.ebi.ac.uk/~zerbino/velvet/).
 
@@ -225,45 +228,102 @@ For fun, try blasting a single read from the original example input file ([ME843
 
 ## What Should I Do Now?
 
-Your first challenge is to choose a dataset from the [FASTQ files provided](datasets) and perform *de novo* assembly using Velvet. Don’t use the example dataset ME8432.fastq and don’t choose the same dataset as your neighbor!  
+In this lab, you have three challenges.  You then have to write a free-style report about what you find.  (So make sure you read the [information section](#research-report) on the report very carefully too).
 
-Can you figure out what organism this dataset came from and what gene was sequenced? Remember to choose a new output directory name every time you run a new assembly – you don’t want to call the output directory ME8432_21 every time! Also, save your files if you want to use them at home. (All output files from Velvet are simple text files that you can open in any basic text editor, like TextEdit or Notepad).
+Your first challenge is to choose one dataset from the [FASTQ files provided](datasets) and perform *de novo* assembly using Velvet. Work out what organism your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (ME8432.fastq), and do not choose the same dataset as your neighbor!
 
-Your second challenge is to explore how varying the k-mer value affects the quality of the sequence assembly. Do some k-mer values produce better assemblies, and if so, which ones? The general approach is to find the size of the largest assembled fragment under different values of the k-mer (I suggest running all values from 3 to the length of your reads, odd numbers only). Remember to specify a different k-mer value on the command line, and also change the output directory name (e.g., use something like ```ME8432_19``` if your dataset is ME8432 and your k-mer is 19).
+> Hint: save your files if you want to use them at home. All of the output files made by Velvet are simple text files that you can open in any basic text editor, like TextEdit or Notepad.
 
-Your third challenge is a very much a ‘stretch’ assignment. When done by hand, you need to run the same commands over and over again, except for changing the k-mer value. Can you figure out a process (i.e., an algorithm) to automate this? Represent your logic as pseudocode (a human readable explanation of what the process is). Taking this further, can you write a real script/program to automate the process? It is fine to use any language and take any approach. Hint: As a place to start, Google ‘bash’ and ‘for loop’. If you get stuck, ask, but I expect to see some real traction before I give out any more hints!
+Your second challenge is to determine how varying the *k*-mer value affects the quality of your sequence assembly. Do some *k*-mer values produce better assemblies? And if so, which ones?  I suggest running all values of *k* from 3 to the length of your reads, odd numbers only.  To see how the assembly changes, work out how many contigs are produced at each value of *k*, the average size of these contigs, and the size of the largest contig.  Record these values.
+
+> Hint: remember to set a new output directory name and change the *k*-mer value for every new assembly you run.  You don’t want to call the output directory ME8432_21 every time!
+
+Your third challenge is a very much a ‘stretch’ assignment. When you make assemblies with different *k*-mer values by hand, you have to run the same commands over and over again, just changing the k-mer value each time. In this challenge, you need to figure out a process (i.e., an algorithm) to automate what you did by hand above.  Represent your logic using pseudocode (see below).  Taking this further, write real code or a script to implement your process.  You can take any approach and use any language.
+
+> Hint: As a place to start, run an internet search for the term 'for loop'.  Ask if you get stuck, but I expect to see some real traction before I give out any more hints!
+
+
+---
+
+## Pseudocode and Code
+
+[Pseudocode](https://en.wikipedia.org/wiki/Pseudocode) in an informal, human-readable description of an algorithm or piece of software code.  
+
+A very simple example might be:
+
+```
+If a student's grade is greater than or equal to 50
+    Print "passed"
+Otherwise
+    Print "failed"
+```
+
+This is not something a computer could run.  Nor would a person.  We would probably say: "the student passed if they got 50%, otherwise they failed".  Pseudocode sits between these two extremes – it describes a series of computations that are very close to what a computer would need to run, without worrying about the details.
+
+Pseudo code is helpful precisely because it *is* very close to what a computer needs to run.  By laying out a process in pseudocode, we are quickly able to write code that a computer can read.  An example in R for the pseudocode above might be:
+
+```r
+student_grade <- 65
+if( student_grade >= 50){
+    print("passed")
+}else{
+    print("failed")
+}
+```
+
+For the stretch exercise (challenge three), you need to write pseudocode and then turn it into actual code that a computer can run.  Although this can get arbitrarily complex, the code (and pseudocode) to automate the Velvet assembles is on the simple end.  
+
+Jump online and start searching for ideas.
 
 
 ---
 
 ## Research Report
 
-This exercise will be examined on the basis of a 4-5 page research report. You should include:
+This section is very important because it describes what you need to do for your report.  This is where all the marks for this module come from.
+
+Your report should be 4-5 pages and should include:
 
 * Your name and Massey student ID
-* Brief sections for introduction, methods, results, discussion and citations, including:
+* Brief sections labeled Introduction, Methods, Results, Discussion and References.  This text should contain:
 
   1. The ID of your dataset (e.g., AB1234)
-  2. The largest fragment that you assembled (i.e., the full DNA sequence)
-  3. The species that you think your dataset came from (and your reasoning)
-  4. The gene that you think your dataset came from (plus reasoning)
-  5. A brief description of this gene (e.g., using information on GenBank and by Googling). What does it do? How does it work?
-  6. Three graphs showing the effects of k-mer value on assembly quality (k-mer value versus number of contigs, k-mer value versus average contig length, and k-mer value versus maximum contig length), from a k-mer of 3 to the size of your input reads
+  2. The full DNA sequence of the largest fragment you assembled
+  3. The species you think your sample came from (plus your reasoning)
+  4. The gene you think your sequence represents (plus your reasoning)
+  5. A brief description of this gene (e.g., using online information, such as GenBank). What does the gene do? How does it work?
+  > Hint: A proportion of your marks will be allocated to getting the right species and gene. Make sure that you are certain about this! Analyze a number of different assembled fragments if you are not sure, and ask for advice in class. 
 
-* Copies of
-  1. Your pseudocode
-  2. Your script/program for automating the assembly process. 
-      > Note: the code will be run to check that it works!
+* Three graphs, plotted in R, that show the effects of *k*-mer value on assembly quality: *k*-mer value versus number of contigs; *k*-mer value versus average contig length; and *k*-mer value versus the maximum contig length.  These graphs should be plotted from a *k*-mer of 3 to the size of your input reads (odd numbered *k*-mers only).
+   > Note: given your training in module 1 and later in this course, all graphs should now be plotted in R.
 
-See the grading criteria on Stream for more details on what you need to focus on. In short, the report should be a full and professional document. Make sure the layout is clear and check your spelling! (You will lose marks if I can’t find the information I’m looking for.) 
+* Results text describing what these plots look like and describing their similarities and differences.
 
-A proportion of your marks will be allocated to getting the right species and gene. Make sure that you are certain about this! Analyze a number of different assembled fragments if you are not sure, and ask for advice in class. 
+* The exact text of your pseudocode and actual computer code to automate the assembly process. 
+   > Hint: the code will be run to check that it works.  Take care not to just cut-and-paste.
 
-Given your training in module 1 and later in this course, all graphs should be plotted in R.
+* Discussion text using what you know about de Bruijn graph assembly to explain why these graphs have their characteristic shapes.  Why do we see better assemblies at some values of *k* and not others?  What are the features of the data and the de Bruijn graph method that cause the graphs to have these shapes?  
+   > Hint: A lot of the marks of this assignment are based on this discussion.  Spend a lot of time on this part, and make sure you really understand what the assembler is doing and how that affects the graphs you have plotted.
 
-However, note that most of your marks will be assigned for good scientific interpretation of the results and graphs. Make sure you explain why your graphs have the shape they do, and link this back to the de Bruijn assembly method. (That is, why does the assembly method produce the graphs you observe?) In particular, you will find that both small k-mers and large k-mers tend to produce poor assemblies – although for different reasons. From your knowledge of de Bruijn graphs and k-mer assembly, why do these two ‘zones’ of poor assembly occur?
 
-Reports are due at the date and time announced in class (usually on the Wednesday of week 12 at noon). Preferably email an electronic copy as a PDF to <&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;>. 
+## Grading Criteria
 
-I will happily comment and advise on reports received after the due date, but late reports will not be awarded marks.
+The report should be a full and professional document. Make sure the layout is clear and check your spelling!  The grading criteria below show the allocation of marks.  Note that you get most marks for explaining why the graphs have their characteristic shapes and how this relates to the de Bruijn assembly process.  Allocate your time and effort accordingly.
+
+Task | Marks | Percentage
+:---- | ----: | ----:
+Correct report format | 1 | 5
+Correct species and gene name | 1 | 5
+Description of gene and its function | 2 | 10
+R graphs formatted properly | 3 | 15
+Graph description | 4 | 20
+Graph interpretation relative to de Bruijn theory | 5 | 25
+Pseudocode and code automation | 4 | 20
+   | 20 | 100
+
+## Due Date
+
+Reports are due at the date and time announced in class (usually at noon on the Wednesday of week 12).  Either hand me a hard copy, or preferably, email a copy as a PDF to me at <&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;>. 
+
+Note that this is the last assignment of the course and it is due in the final week of term.  While I will happily comment on reports received after the due date, late reports cannot be awarded marks.
 
