@@ -336,7 +336,7 @@ Pseudocode and code automation | 4 | 20
 
 ## Due Date
 
-Reports are due on the date and time announced in class (usually at noon on the Wednesday of week 12).  Either hand me a hard copy, or preferably, email a PDF copy to me at [&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;](mailto:&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;). 
+Reports are due on the date and time announced on Stream and in class.  Either hand me a hard copy, or preferably, email a PDF copy to me at [&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;](mailto:&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;). 
 
-Note that this is the final assignment of the course and it is due in the last week of term.  While I will happily comment on reports received after the due date, late reports cannot be awarded marks.
+Note that this is the final assignment of the course and it is due in the last week of term.  While I will happily comment on reports received after the due date and time, late reports cannot be awarded marks.
 
