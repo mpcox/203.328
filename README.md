@@ -332,7 +332,7 @@ R graphs formatted properly | 3 | 15
 Graph description | 4 | 20
 Graph interpretation informed by de Bruijn theory | 5 | 25
 Pseudocode and code automation | 4 | 20
-   | 20 | 100
+&nbsp; | 20 | 100
 
 ## Due Date
 
