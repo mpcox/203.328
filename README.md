@@ -232,16 +232,18 @@ In this lab, you have three challenges.  You then have to write a free-style rep
 
 Your first challenge is to choose one dataset from the FASTQ files provided and perform *de novo* assembly using Velvet.  The dataset options are:
 
-[CL9110.fastq](datasets/CL9110.fastq)<br>
-[DX1838.fastq](datasets/DX1838.fastq)<br>
-[FW3273.fastq](datasets/FW3273.fastq)<br>
-[HU6186.fastq](datasets/HU6186.fastq)<br>
-[JV7597.fastq](datasets/JV7597.fastq)<br>
-[KH5269.fastq](datasets/KH5269.fastq)<br>
-[OX2475.fastq](datasets/OX2475.fastq)<br>
-[RY4458.fastq](datasets/RY4458.fastq)<br>
-[WB2600.fastq](datasets/WB2600.fastq)<br>
-[YR7829.fastq](datasets/YR7829.fastq)
+[BW8190.fq](datasets/BW8190.fq)<br>
+[CZ1670.fq](datasets/CZ1670.fq)<br>
+[EM5562.fq](datasets/EM5562.fq)<br>
+[FV0515.fq](datasets/FV0515.fq)<br>
+[LO9991.fq](datasets/LO9991.fq)<br>
+[NR9310.fq](datasets/NR9310.fq)<br>
+[PN5692.fq](datasets/PN5692.fq)<br>
+[RT3796.fq](datasets/RT3796.fq)<br>
+[TF7059.fq](datasets/TF7059.fq)<br>
+[VX7379.fq](datasets/VX7379.fq)<br>
+[WS7743.fq](datasets/WS7743.fq)<br>
+[XQ8842.fq](datasets/XQ8842.fq)
 
 Work out what organism your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (ME8432.fastq), and do not choose the same dataset as your neighbor!
 
