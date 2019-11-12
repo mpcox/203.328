@@ -151,7 +151,7 @@ Count unique entries in a file | ```sort file_name | uniq -c```
 1. To save time and avoid mistakes, use tab completion when typing
    * Names of Unix commands if they are more than 2–3 characters long
    * Names of scripts
-   * Names of files and directories that are arguments to commands
+   * Names of files and directories that are arguments to commands<br>
 
 2. Pay attention when copying and pasting commands from Word, PDFs or similar files. They often contain ‘hidden’ characters that look similar, but are actually different (e,g., '–' instead of '-').
 
