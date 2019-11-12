@@ -219,9 +219,9 @@ After a little while, you should see a screen that looks something like this (th
 
 <img src="graphics/example_blast_results.png" width="700"/>
 
-The red lines (top) represent good blast hits. You want to look for the best match to a gene or mRNA sequence, as opposed to an entire genome, chromosome or clone. In this case, the best match is to GenBank entry NM_001178457. This accession comes from *Saccharomyces cerevisiae* (Baker’s yeast) and matches the *calmodulin* gene, which codes for a calcium ion binding protein.
+The top lines represent the best blast matches. You want to look for the best match to a gene or mRNA sequence, as opposed to an entire genome, chromosome or clone. In this case, the best match is to GenBank entry NM_001304885. This accession comes from *Ailuropoda melanoleuca* (Panda) and matches the *&beta; hemoglobin* gene, which codes for a protein that carries oxygen in the blood.
 
-For some datasets, the top hits may be to entire genome sequences or other nucleotide fragments (e.g., chromosomes, bacterial artificial chromosomes or BACs, or plasmids). You may have to look (well) down the BLAST list to identify what gene your sequence best matches to, but the matches will be there.
+For some datasets, the top hits may be to entire genome sequences or other nucleotide fragments (e.g., chromosomes, bacterial artificial chromosomes or BACs, or plasmids). You may have to look down the BLAST list to identify what gene your sequence best matches to, but the matches will be there.
 
 For fun, try blasting a single read from the original example input file ([EV6293.fq](example/EV6293.fq)). Does the result differ from blasting your larger assembled fragment? If so, how?
 
@@ -247,7 +247,7 @@ Your first challenge is to choose one dataset from the FASTQ files provided and 
 [WS7743.fq](datasets/WS7743.fq)<br>
 [XQ8842.fq](datasets/XQ8842.fq)
 
-Work out what organism your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (EV6293.fq), and do not choose the same dataset as your neighbor!
+Work out what species your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (EV6293.fq), and do not choose the same dataset as your neighbor!
 
 > Hint: save your files if you want to look at them at home. All of the output files made by Velvet are simple text files that you can open in any basic text editor, like TextEdit or Notepad.
 
