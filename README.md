@@ -48,13 +48,13 @@ Sequences from next generation technologies come in a lot of different flavors. 
 Next generation sequences are usually provided in a format called [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format), where the *Q* stands for *quality*.  The entry for a single read would typically look something like this:
 
 ```
-@ME8432_1
-CTTCTGCTTCAATGGGCGAAAGACCCAATGACCTCATCAC
-+ME8432_1
-hhhgh`\ahQhEhhhhhhheOhhQQVhefhhLUheYShhE
+@EV6293_1
+CCAAGGTGCATCTGACTGGTGAGGAGAAGGCTGCCGTCACCGGCCTGTGG
++
+C1C(=FDFH<DHHJJJJJJ;JG?I)IJHF<IJJHIIHJBJIIJEJICIJ4
 ```
 
-Each sequence entry consists of four lines. The first line always starts with ‘@’ and is followed by a unique read identifier (here, *ME8432_1*). The second line lists the actual DNA (or RNA) sequence. The third line always starts with ‘+’, optionally followed by the unique identifier again. The fourth line lists the quality of each base along the sequence in a fairly esoteric ASCII encoding. You can read more about how this quality information is encoded in this paper:
+Each sequence entry consists of four lines. The first line always starts with ‘@’ and is followed by a unique read identifier (here, *EV6293_1*). The second line lists the actual DNA (or RNA) sequence. The third line always starts with ‘+’, optionally followed by the unique identifier again. The fourth line lists the quality of each base along the sequence in a fairly esoteric ASCII encoding. You can read more about how this quality information is encoded in this paper:
 
 Cock PJA, CJ Fields, N Goto, ML Heuer and PM Rice. 2010. [The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants](https://doi.org/10.1093/nar/gkp1137). *Nucleic Acids Research* 38:1767--1771.
 
@@ -134,23 +134,25 @@ cd example_assembly
 ls
 ```
 
-Next, you need a dataset of short-read sequences to assemble. We'll use the example dataset [ME8432.fastq](example/ME8432.fastq). Move the example dataset file into your new directory. 
+Next, you need a dataset of short-read sequences to assemble. We'll use the example dataset [EV6293.fq](example/EV6293.fq). Move the example dataset file into your new directory. 
 
 Take a look at the input reads:
 ```
-head ME8432.fastq
+head EV6293.fq
 ```
 
-Pay particular attention to how long the input reads are. In this example file, the input reads are 40 nucleotides long:
+Pay particular attention to how long the input reads are. In this example file, the input reads are 50 nucleotides long:
 ```
-@ME8432_1
-CTTCTGCTTCAATGGGCGAAAGACCCAATGACCTCATCAC
-+ME8432_1
-hhhgh`\ahQhEhhhhhhheOhhQQVhefhhLUheYShhE
-@ME8432_2
-CAAATTGCTGAATTCAAAGAAGCCTTTGCTCTCTTTGATA
-+ME8432_2
-hhhhhhhEhfhhhh[hhhhhhhCChahdDDBhFfhhhhhh
+@EV6293_1
+CCAAGGTGCATCTGACTGGTGAGGAGAAGGCTGCCGTCACCGGCCTGTGG
++
+C1C(=FDFH<DHHJJJJJJ;JG?I)IJHF<IJJHIIHJBJIIJEJICIJ4
+@EV6293_2
+GGGGTTGTTCATAACAGCATCAGGAGTGGACAGGTCCCCAAAGGAGTCAA
++
+CC@FFED+AHHHHEJIJHIIFJJJJJJJIJHJGIGJDG.IJIJJGJHBH=
+@EV6293_3
+CCACCACCTTCTGATAGGCAGCCTGCACCTGAGGGGTGAACTCTTTGCCG
 ...
 ```
 
@@ -161,8 +163,8 @@ Now, you need to get the Velvet programs.  There are better ways to set them up 
 We are now are ready to perform an assembly with a chosen *k*-mer value. Let’s start with a *k*-mer value of 21.  The two Velvet command lines you need to run (described above) are:
 
 ```
-./velveth ME8432_21 21 -fastq -short ME8432.fastq
-./velvetg ME8432_21
+./velveth EV6293_21 21 -fastq -short EV6293.fq
+./velvetg EV6293_21
 ```
 
 These commands should complete within seconds, but for typical genome scale assemblies, they might take hours to days.  If these commands don't finish quickly, there's a problem.  The two most common errors are typos and missing files.  Check your command lines very carefully and also make sure that all the files you need are in your directory (read the steps above again).
@@ -170,7 +172,7 @@ These commands should complete within seconds, but for typical genome scale asse
 Assuming the programs ran ok, it's time to look at the Velvet output.  Do this by moving into the assembly directory you created and see what files are in there:
 
 ```
-cd ME8432_21
+cd EV6293_21
 ls
 ```
 
@@ -221,7 +223,7 @@ The red lines (top) represent good blast hits. You want to look for the best mat
 
 For some datasets, the top hits may be to entire genome sequences or other nucleotide fragments (e.g., chromosomes, bacterial artificial chromosomes or BACs, or plasmids). You may have to look (well) down the BLAST list to identify what gene your sequence best matches to, but the matches will be there.
 
-For fun, try blasting a single read from the original example input file ([ME8432.fastq](example/ME8432.fastq)). Does the result differ from blasting your larger assembled fragment? If so, how?
+For fun, try blasting a single read from the original example input file ([EV6293.fq](example/EV6293.fq)). Does the result differ from blasting your larger assembled fragment? If so, how?
 
 
 ---
@@ -245,7 +247,7 @@ Your first challenge is to choose one dataset from the FASTQ files provided and 
 [WS7743.fq](datasets/WS7743.fq)<br>
 [XQ8842.fq](datasets/XQ8842.fq)
 
-Work out what organism your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (ME8432.fastq), and do not choose the same dataset as your neighbor!
+Work out what organism your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (EV6293.fq), and do not choose the same dataset as your neighbor!
 
 > Hint: save your files if you want to look at them at home. All of the output files made by Velvet are simple text files that you can open in any basic text editor, like TextEdit or Notepad.
 
