@@ -186,30 +186,36 @@ The *stats.txt* file contains most of the information we need about how well the
 
 ```
 ID   lgth   out  in   …
-1    329    0    0    …
+1    131    0    0    …
+2    379    0    0    …
 ```
 
-This particular file only contains two lines: a header line and a single entry on the next row.  There will be (many) more lines when you use other assembly parameters instead.
+This particular file  contains three lines: a header line and two entries on the next two rows.  There may be (many) more lines when you use other assembly parameters instead.
 
-The most helpful columns are the first and second. The first column lists the ID number of each assembled fragment, called a *contig* (here, this identifier is *1*).  The second column lists the length of each assembled contig (here, 329 nucleotides). 
+The most helpful columns are the first and second. The first column lists the ID number of each assembled fragment, called a *contig* (here, this identifier is *1* and *2*).  The second column lists the length of each assembled contig (here, 131and 379 nucleotides). 
 
-For most datasets, you will see far more assembled contigs, and some of these contigs may be very small (even, in extreme cases, just 1 nucleotide long).
+For most datasets, you will see more assembled contigs, and some of these contigs may be very small (even, in extreme cases, just 1 nucleotide long).
 
-The actual assembled sequences – the *contigs* – are contained in the file *contigs.fa*. This is just a simple text file containing [FASTA](https://en.wikipedia.org/wiki/FASTA_format) sequence records. Each contig will look something like this:
+The actual assembled sequences – the *contigs* – are contained in the file *contigs.fa*. This is just a simple text file containing [FASTA](https://en.wikipedia.org/wiki/FASTA_format) sequence records. The contigs will look something like this:
 
 ```
->NODE_1_length_329_cov_16.844984
-GTCCTCCAATCTTACCGAAGAACAAATTGCTGAATTCAAAGAAGCCTTTGCCCTCTTTGA
-TAAAGATAACAATGGCTCTATCTCATCAAGTGAATTGGCCACTGTGATGAGGTCATTGGG
-TCTTTCGCCCAGTGAAGCAGAAGTAAATGATTTGATGAACGAAATAGATGTTGATGGTAA
-CCATCAAATCGAATTTAGTGAATTTTTGGCTCTGATGTCTCGTCAACTCAAATCAAATGA
-CTCTGAACAAGAACTACTAGAAGCTTTTAAAGTATTCGATAAGAACGGTGATGGTTTAAT
-CTCCGCCGCTGAGTTGAAACACGTGCTACCATCCATTGGTGAAAAATTG
+>NODE_1_length_131_cov_3.778626
+TGTTCACTAGCAACCACAAAGAGACACCATGGTGCATCTGACTGGTGAGGAGAAGGCTGC
+CGTCACCGGCCTGTGGAGCAAGGTGAACGTGGATGAAGTTGGTGGTGAGGCCCTGGGCAG
+GCTGCTGGTTGTCTACCCCTGGACTCAGAGG
+>NODE_2_length_379_cov_4.298153
+TTATTAGACAGAAACCATACCCTTGATGGTGGACATTATTTCCCCCAGTTCAGAAGATAG
+AATTTAGGGGAACAGGGTCTTCCAGGCATCACCAGGAAACAGGCCAGGAGCTCAGTGGTA
+CTTGTGGGCCAGGGCGTTGGCCACACCAGCCACCACCTTCTGATAGGCAGCCTGCACCTG
+AGGGGTGAACTCTTTGCCGAAGTGGTGAGCCAGCACACACACCAGCACGTTGCCCAGGAG
+CTTGAAGTTCTCGGGATCCACGTGCAGCTTGTCACAGTGCAGCTCGCTCAGCTTAACAAA
+GGTGCCCTTGAGGTTGTCCAGATTCTTCAGGCCTTCACTAAAGGAGTTCAGCACCTTCTT
+GCCATGGGCCTTGACCTTGGGGTTGTTCATAACAGCATC
 ```
 
-As recorded in the *stats.txt* file, this contig has an ID number of 1 and is 329 nucleotides long. Since the input reads were only 40 nucleotides long, the assembly process has clearly worked – at least to some extent. But keep an eye out for poorly assembled contigs – say, contigs smaller than the input read size. These may appear in the *stats.txt* file and should be included in your analyses, but Velvet often excludes them from the *contigs.fa* file.
+As recorded in the *stats.txt* file, the first contig has an ID number of 1 and is 131 nucleotides long. The second contig has an ID number of 2 and is 379 nucleotides long. Since the input reads were only 50 nucleotides long, the assembly process has clearly worked – at least to some extent. But keep an eye out for poorly assembled contigs – say, contigs smaller than the input read size. These may appear in the *stats.txt* file and should be included in your analyses, but Velvet often excludes them from the *contigs.fa* file.
 
-Finally, we want to find out what organism this sample originally came from and what gene the sequence represents. We will use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and the [GenBank database](https://www.ncbi.nlm.nih.gov/genbank/) to find this out. 
+Finally, we want to find out what species this sample originally came from and what gene the sequence represents. We will use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) and the [GenBank database](https://www.ncbi.nlm.nih.gov/genbank/) to find this out. 
 
 At the [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) website, choose *nucleotide blast*.
 
@@ -219,7 +225,7 @@ After a little while, you should see a screen that looks something like this (th
 
 <img src="graphics/example_blast_results.png" width="700"/>
 
-The top lines represent the best blast matches. You want to look for the best match to a gene or mRNA sequence, as opposed to an entire genome, chromosome or clone. In this case, the best match is to GenBank entry NM_001304885. This accession comes from *Ailuropoda melanoleuca* (Panda) and matches the *&beta; hemoglobin* gene, which codes for a protein that carries oxygen in the blood.
+The top lines represent the best blast matches. You want to look for the best match to a gene, coding sequence (cds) or mRNA sequence, as opposed to an entire genome, chromosome or clone. In this case, the best match is to GenBank entry NM_001304885. This accession comes from *Ailuropoda melanoleuca* (Panda) and matches the *&beta; hemoglobin* gene, which codes for a protein that carries oxygen in the blood.
 
 For some datasets, the top hits may be to entire genome sequences or other nucleotide fragments (e.g., chromosomes, bacterial artificial chromosomes or BACs, or plasmids). You may have to look down the BLAST list to identify what gene your sequence best matches to, but the matches will be there.
 
@@ -232,7 +238,7 @@ For fun, try blasting a single read from the original example input file ([EV629
 
 In this lab, you have three challenges.  You then have to write a free-style report about what you found, so make sure you read the [information section](#research-report) on the report very carefully too.
 
-Your first challenge is to choose one dataset from the FASTQ files provided and perform *de novo* assembly using Velvet.  The dataset options are:
+Your first challenge is to choose *one* dataset from the FASTQ files provided and perform *de novo* assembly using Velvet.  The dataset options are:
 
 [BW8190.fq](datasets/BW8190.fq)<br>
 [CZ1670.fq](datasets/CZ1670.fq)<br>
