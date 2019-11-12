@@ -115,7 +115,7 @@ Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read a
 
 ## Installing Velvet
 
-You will be using computers running macOS in this lab.  I have already compiled the two programs for you (i.e., ```velveth``` and ```velvetg```) and you can simply download them [here](code/macOS_10.14_binaries.zip).  
+You will be using computers running macOS in this lab.  I have already compiled the two programs for you (i.e., ```velveth``` and ```velvetg```) and you can simply download them [here](code/macOS_10.15_binaries.zip).  
 
 If you want to learn how to compile these programs from the original source code, or if you want to run Velvet on your own non-macOS computer, [check out the instructions here](docs/compilation.html).  Compiling programs isn't as hard as it first seems, and it is a very useful skill to know.
 
@@ -154,7 +154,7 @@ hhhhhhhEhfhhhh[hhhhhhhCChahdDDBhFfhhhhhh
 ...
 ```
 
-Now, you need to get the Velvet programs.  There are better ways to set them up so they can be used anywhere on your computer, but for now, let's simply copy-and-paste the program files ```velveth``` and ```velvetg``` into your directory.  As a reminder, you can download these programs [here](code/macOS_10.14_binaries.zip), or learn how to compile them for your own computer [here](docs/compilation.html).
+Now, you need to get the Velvet programs.  There are better ways to set them up so they can be used anywhere on your computer, but for now, let's simply copy-and-paste the program files ```velveth``` and ```velvetg``` into your directory.  As a reminder, you can download these programs [here](code/macOS_10.15_binaries.zip), or learn how to compile them for your own computer [here](docs/compilation.html).
 
 <img src="graphics/program_files.png" width="700"/>
 
