@@ -163,8 +163,8 @@ Now, you need to get the Velvet programs.  There are better ways to set them up 
 We are now are ready to perform an assembly with a chosen *k*-mer value. Let’s start with a *k*-mer value of 21.  The two Velvet command lines you need to run (as described above) are:
 
 ```
-./velveth EV6293_21 21 -fastq -short EV6293.fq
-./velvetg EV6293_21
+velveth EV6293_21 21 -fastq -short EV6293.fq
+velvetg EV6293_21
 ```
 
 These commands should complete within seconds, but for typical genome scale assemblies, they might take hours to days.  If these commands don't finish quickly, there's a problem.  The two most common errors are typos and missing files.  Check your command lines very carefully and also make sure that all the files you need are in your directory (read the steps above again).
