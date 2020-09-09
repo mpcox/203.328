@@ -43,7 +43,7 @@ You have already learned basic UNIX commands in module 1. If you are comfortable
 
 ## Next Generation Sequences
 
-Sequences (or 'reads') from next generation technologies come in a lot of different flavors. For this lab, we will be using reads generated on the [Illumina platform](http://www.illumina.com/applications/sequencing.html), one of the dominant technologies in use today.
+Sequences (or 'reads') from next generation technologies come in a lot of different flavors. For this lab, we will be using reads generated on the [Illumina platform](https://www.illumina.com/techniques/sequencing.html), one of the dominant technologies in use today.
 
 Next generation reads are usually provided in a format called [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format), where the *Q* stands for *quality*.  The entry for a single read would typically look something like this:
 
@@ -102,7 +102,7 @@ Assembly:  GGCTAGAGGCTAGCTTCAATGGGCGAAAGACCCGAGAGAGCTGGCT
 
 While intuitive, this approach does not work well with big short read datasets in practice.  Velvet instead uses a branch of mathematics concerned with networks (de Bruijn graph assembly algorithms).  A key feature of this assembly approach is the *k*-mer, a unique sequence of length *k*.  *k*-mers are sometimes called *word sizes*.  In Velvet, the *k*-mer is the most important variable parameter, and can be any odd number from 3 to the length of the read.
 
-We will cover de Bruijn graph assembly more fully in the lectures, but you should also learn more about this approach using the following papers.  I strongly suggest you read some or all of them.  *Understanding de Bruijn graph assembly is crucial to completing this lab well*.
+We will cover de Bruijn graph assembly more fully in the lectures, but you should also learn more about this approach using the following papers.  I strongly suggest you read some or all of them.  *Understanding de Bruijn graph assembly is crucial to completing the lab report well*. All papers in this document have web links, but they are also all available on Stream.
 
 Compeau PEC, PA Pevzner and G Tesler. 2013. [How to apply de Bruijn graphs to genome assembly](https://doi.org/10.1038/nbt.2023). *Nature Biotechnology* 29:987-991.
 
@@ -115,9 +115,9 @@ Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read a
 
 ## Installing Velvet
 
-You will be using computers running macOS in this lab.  I have already compiled the two programs you need (i.e., ```velveth``` and ```velvetg```) and you can simply download them [here](code/macOS_10.15_binaries.zip).  
+You will be using cloud computing in this lab.  I have already compiled the two programs you need there (i.e., ```velveth``` and ```velvetg```), although you can also download the macOS versions for the lab computers [here](code/macOS_10.15_binaries.zip).  
 
-If you want to learn how to compile these programs from the original source code, or if you want to run Velvet on your own non-macOS computer, [look at the instructions here](docs/compilation.html).  Compiling programs isn't as hard as it first seems, and it is a very useful skill to know.
+If you want to learn how to compile these programs from the original source code, or if you want to run Velvet on your own computer, [look at the instructions here](docs/compilation.html).  Compiling programs isn't as hard as it first seems, and it is a very useful skill to know.
 
 
 ---
@@ -156,7 +156,9 @@ CCACCACCTTCTGATAGGCAGCCTGCACCTGAGGGGTGAACTCTTTGCCG
 ...
 ```
 
-Now, you need to get the Velvet programs.  There are better ways to set them up so they can be used anywhere on your computer, but for now, let's simply copy-and-paste the program files ```velveth``` and ```velvetg``` into your directory.  As a reminder, you can download these programs [here](code/macOS_10.15_binaries.zip), or learn how to compile them for your own computer [here](docs/compilation.html).
+If you are using the default cloud computing system, you should already have the Velvet programs installed. If you are using a different computer, you will need to get the Velvet programs (see the 'Installing Velvet' section above).
+
+Your screen will look similar to (but not exactly the same as) this:
 
 <img src="graphics/program_files.png" width="700"/>
 
@@ -225,7 +227,7 @@ After a little while, you should see a screen that looks something like this (no
 
 <img src="graphics/example_blast_results.png" width="700"/>
 
-The top lines represent the best blast matches. You want to look for the best match to a gene, coding sequence (cds) or mRNA sequence, as opposed to an entire genome, chromosome or clone. In this case, the best match is to GenBank entry NM_001304885. This accession comes from *Ailuropoda melanoleuca* – a Panda – and matches the *&beta; hemoglobin* gene, which codes for a protein that carries oxygen around the blood.
+The top lines represent the best blast matches. You want to look for the best match to a gene, coding sequence (cds) or mRNA sequence, as opposed to an entire genome, chromosome or clone. In this case, the best match is to GenBank entry NM_001304885. This accession comes from *Ailuropoda melanoleuca* – a Panda – and matches the *&beta; hemoglobin* gene, which codes for a protein that carries oxygen around in the blood.
 
 For some datasets, the top hits may be to entire genome sequences or other nucleotide fragments (e.g., chromosomes, plasmids, or bacterial artificial chromosomes or BACs). You may have to look down the BLAST list to identify what gene your sequence best matches to, but the matches will be there.
 
@@ -238,7 +240,7 @@ For fun, try blasting a single read from the original example input file ([EV629
 
 In this exercise, you have three challenges.  You then have to write a free-style report about what you found, so make sure you read the [information section on the report](#research-report) very carefully.
 
-Your first challenge is to choose just *one* dataset from the FASTQ files provided below and perform *de novo* assembly on it using Velvet.  The dataset options are:
+Your first challenge is to choose just *one* dataset from the FASTQ files provided below and perform *de novo* assembly on it using Velvet.  The dataset options, which should already be in your cloud computing system, are:
 
 [BW8190.fq](datasets/BW8190.fq)<br>
 [CZ1670.fq](datasets/CZ1670.fq)<br>
@@ -303,7 +305,7 @@ Jump online and start searching for ideas.
 
 ## Research Report
 
-The followig information is very important because it describes what you need to do for your report.  This is where all the marks for this module come from.
+The following information is very important because it describes what you need to do for your report.  This is where all the marks for this module come from.
 
 Your report should be no more than 4-5 pages long and should include:
 
