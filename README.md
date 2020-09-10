@@ -115,9 +115,13 @@ Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read a
 
 ## Installing Velvet
 
-You will be using cloud computing in this lab.  I have already compiled the two programs you need there (i.e., ```velveth``` and ```velvetg```), although you can also download the macOS versions for the lab computers [here](code/macOS_10.15_binaries.zip).  
+You will be using cloud computing for this lab.  I have already compiled the two programs you need there (i.e., ```velveth``` and ```velvetg```).  Before you start, run the following command:
 
-If you want to learn how to compile these programs from the original source code, or if you want to run Velvet on your own computer, [look at the instructions here](docs/compilation.html).  Compiling programs isn't as hard as it first seems, and it is a very useful skill to know.
+```
+PATH=$PATH:/cloud/project/module_6
+```
+
+If you want to learn how to compile these programs from the original source code, or if you want to run Velvet on your own computer, [look at the instructions here](docs/compilation.html). Compiling programs isn't as hard as it first seems, and it is a very useful skill to know. You can also download macOS versions for the lab computers [here](code/macOS_10.15_binaries.zip). 
 
 
 ---
@@ -257,7 +261,7 @@ Your first challenge is to choose just *one* dataset from the FASTQ files provid
 
 Work out what species your 'sample' came from and what gene was sequenced. Choose a dataset randomly, do not use the example dataset (EV6293.fq), and do not choose the same dataset as your neighbor!
 
-> Hint: save your files if you want to look at them at home. All of the output files made by Velvet are simple text files that you can open in any basic text editor, like TextEdit or Notepad.
+> Hint: if you are using the lab computers, save your files if you want to look at them at home. All of the output files made by Velvet are simple text files that you can open in any basic text editor, like TextEdit or Notepad.
 
 Your second challenge is to determine how changing the *k*-mer value affects the quality of your sequence assembly. Do some *k*-mer values produce better assemblies? And if so, which ones?  I suggest running all values of *k* from 3 to the length of your reads, odd numbers only.  To see how the assemblies vary, work out how many contigs are produced at each value of *k*, the average size of these contigs, and the size of the largest contig.  Record these values in a table.
 
