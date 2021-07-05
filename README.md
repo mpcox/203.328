@@ -115,11 +115,15 @@ Zerbino, D. R. and E. Birney. 2008. [Velvet: Algorithms for de novo short read a
 
 ## Installing Velvet
 
-You will be using cloud computing for this lab.  I have already compiled the two programs you need there (i.e., ```velveth``` and ```velvetg```).  Before you start, run the following command:
+You will be using cloud computing for this lab.  I have already compiled the two programs you need (i.e., ```velveth``` and ```velvetg```).  
+
+<!-- 
+Before you start, run the following command:
 
 ```
 PATH=$PATH:/cloud/project/module_6
 ```
+-->
 
 If you want to learn how to compile these programs from the original source code, or if you want to run Velvet on your own computer, [look at the instructions here](docs/compilation.html). Compiling programs isn't as hard as it first seems, and it is a very useful skill to know. You can also download macOS versions for the lab computers [here](code/macOS_10.15_binaries.zip). 
 
@@ -352,7 +356,7 @@ Pseudocode and code automation | 4 | 20
 
 ## Due Date
 
-Reports are due on the date and time announced on Stream and in class.  Either hand me a hard copy, or preferably, email a PDF copy to me at [&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;](mailto:&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;). 
+Reports are due on the date and time announced on Stream and in class.  Email a PDF of your report to me at [&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;](mailto:&#109;&#46;&#112;&#46;&#99;&#111;&#120;&#64;&#109;&#97;&#115;&#115;&#101;&#121;&#46;&#97;&#99;&#46;&#110;&#122;). 
 
 Note that this is the final assignment of the course and it is due just before the course ends.  I will happily comment on reports received after the due date and time, but because of time constraints, late reports cannot be awarded marks.  Submit your report on time!
 
